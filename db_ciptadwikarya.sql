@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 23, 2018 at 10:36 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: 23 Jun 2018 pada 06.01
+-- Versi Server: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Struktur dari tabel `customers`
 --
 
 CREATE TABLE `customers` (
@@ -38,7 +38,7 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `customers`
+-- Dumping data untuk tabel `customers`
 --
 
 INSERT INTO `customers` (`id_customer`, `name`, `address`, `phone`, `created_date`, `created_by`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `customers` (`id_customer`, `name`, `address`, `phone`, `created_dat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory`
+-- Struktur dari tabel `inventory`
 --
 
 CREATE TABLE `inventory` (
@@ -61,7 +61,7 @@ CREATE TABLE `inventory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `inventory`
+-- Dumping data untuk tabel `inventory`
 --
 
 INSERT INTO `inventory` (`id_inventory`, `name`, `sum_in`, `sum_out`, `sum_end`, `date_in`, `note`) VALUES
@@ -70,27 +70,28 @@ INSERT INTO `inventory` (`id_inventory`, `name`, `sum_in`, `sum_out`, `sum_end`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE `roles` (
   `id_roles` int(11) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  `note` varchar(1000) NOT NULL
+  `role` varchar(15) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `roles`
+-- Dumping data untuk tabel `roles`
 --
 
-INSERT INTO `roles` (`id_roles`, `role`, `note`) VALUES
-(1, 'user', 'login sebagai user'),
-(2, 'admin', 'login sebagai admin');
+INSERT INTO `roles` (`id_roles`, `role`, `id_user`) VALUES
+(1, 'ADMIN', 0),
+(2, 'ADMIN', 0),
+(3, 'ADMIN', 10);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaction`
+-- Struktur dari tabel `transaction`
 --
 
 CREATE TABLE `transaction` (
@@ -104,7 +105,7 @@ CREATE TABLE `transaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `transaction`
+-- Dumping data untuk tabel `transaction`
 --
 
 INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `quantity`, `id_user`, `id_barang`, `id_customer`, `note`) VALUES
@@ -113,7 +114,7 @@ INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `quantity`, `id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -122,16 +123,17 @@ CREATE TABLE `users` (
   `name` varchar(30) NOT NULL,
   `password` varchar(32) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `enable` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `name`, `password`, `enabled`, `created_date`) VALUES
-(1, 'admin', 'Admin', 'admin123', 1, '2018-05-30 17:00:00'),
-(2, 'darichy', 'darichy', '123456', 1, '2018-05-30 17:00:00');
+INSERT INTO `users` (`id_user`, `username`, `name`, `password`, `enabled`, `enable`) VALUES
+(1, 'admin', 'Admin', 'admin123', 1, NULL),
+(2, 'darichy', 'darichy', '123456', 1, NULL),
+(10, 'sdfg', 'vcbn', 'fdh', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -153,8 +155,7 @@ ALTER TABLE `inventory`
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id_roles`),
-  ADD UNIQUE KEY `role` (`role`);
+  ADD PRIMARY KEY (`id_roles`);
 
 --
 -- Indexes for table `transaction`
@@ -181,26 +182,31 @@ ALTER TABLE `users`
 --
 ALTER TABLE `customers`
   MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
   MODIFY `id_inventory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
   MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
