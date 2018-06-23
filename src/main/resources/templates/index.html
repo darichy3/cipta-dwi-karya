@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"      
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      >
+    <head>
+        <link rel="icon" th:href="@{/img/favicon.ico}" />
+
+        <title>Product example for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/css/product.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+
+        <nav class="site-header sticky-top py-1">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
+                <a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a>
+            </div>
+        </nav>
+        
+        <!-- Main content -->
+        <div layout:fragment="content" class="container py-5">
+                Index Content
+        </div>
+
+        <footer class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+                </div>  
+            </div>
+        </footer>
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script th:src="@{/js/jquery-3.3.1.slim.min.js}" ></script>
+        <script th:src="@{/js/vendor/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/holder.min.js}"></script>
+        <script>
+            Holder.addTheme('thumb', {
+                bg: '#55595c',
+                fg: '#eceeef',
+                text: 'Thumbnail'
+            });
+        </script>
+    </body>
+</html>
