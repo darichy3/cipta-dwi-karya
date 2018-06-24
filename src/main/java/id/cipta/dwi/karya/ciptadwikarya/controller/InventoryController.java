@@ -3,13 +3,16 @@ package id.cipta.dwi.karya.ciptadwikarya.controller;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormInventory;
 import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
-import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
 import id.cipta.dwi.karya.ciptadwikarya.service.InventoryService;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -45,7 +48,7 @@ public class InventoryController {
         
         logger.info(formInventory.toString());
         
-        return "redirect:/inventory/add";        
+        return "redirect:/inventory/menu";        
     }
     
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
@@ -54,6 +57,36 @@ public class InventoryController {
         model.addAttribute("inventories", inventoryRepository.findAll());
         
         return "menuInventory";        
+    }
+    
+    @RequestMapping(value={"/edit","/edit/{idInventory}"}, method = RequestMethod.GET)
+    public String GetEditAction(Model model, @PathVariable(required = false, name = "idInventory") Integer idInventory) {
+        if (null != idInventory) {
+                model.addAttribute("inventories", inventoryService.findOne(idInventory));
+        } else {
+            model.addAttribute("inventories", new Inventory());
+        }
+        return "editInventory";
+    }
+    
+    @RequestMapping(value={"/edit","/edit/{idInventory}"}, method = RequestMethod.POST)
+    public String PostEditAction(Model model, @Valid @ModelAttribute("inventories") Inventory inventories, FormInventory formInventory) {
+        
+        inventories.setName(formInventory.getName());
+        inventories.setSumIn(formInventory.getSumIn());
+        inventories.setNote(formInventory.getName());
+        
+        inventoryService.updateInventory(inventories);
+        logger.info(formInventory.toString());
+        model.addAttribute("inventories", inventoryService.findAll());
+        return "menuInventory";
+    }
+
+    @RequestMapping(value="/delete/{idInventory}", method = RequestMethod.GET)
+    public String GetDeleteAction(Model model, @PathVariable(required = true, name = "idInventory") Integer idInventory) {
+        inventoryService.deleteInventory(idInventory);
+        model.addAttribute("inventories", inventoryService.findAll());
+        return "menuInventory";
     }
     
 }

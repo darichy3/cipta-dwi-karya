@@ -31,6 +31,6 @@ public class FormUsers {
 
     @Override
     public String toString() {
-        return "FornUsers{" + "username=" + username + ", password=" + password + ", name=" + name + '}';
+        return "FormUsers{" + "username=" + username + ", password=" + password + ", name=" + name + '}';
     }
 }

@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     List<Customers> findByName(String name);
+    
+    Customers findById(Integer id);
 }
