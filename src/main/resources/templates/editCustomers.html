@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/index" >
+    <head>
+        <title>TODO supply a title</title>  
+    </head>
+    <body>
+        <div layout:fragment="content" class="container py-5">
+            <form class="form-horizontal" th:action="@{/customer/edit}" th:object="${formCustomers}" method="POST" >
+                <input th:field="${customers.id}" name="id" th:type="hidden" id="id" />
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input th:field="${customers.name}" type="text" class="form-control" id="name" placeholder="Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-10">
+                        <input th:field="${customers.address}" type="text" class="form-control" id="address" placeholder="Address" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-2 control-label">Phone</label>
+                    <div class="col-sm-10">
+                        <input th:field="${customers.phone}" type="text" class="form-control" id="phone" placeholder="Phone" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
