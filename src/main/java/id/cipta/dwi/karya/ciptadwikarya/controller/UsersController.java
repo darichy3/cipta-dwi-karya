@@ -3,11 +3,13 @@ package id.cipta.dwi.karya.ciptadwikarya.controller;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Roles;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Users;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormUsers;
+import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
 import id.cipta.dwi.karya.ciptadwikarya.service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,6 +21,9 @@ public class UsersController {
     
     @Autowired
     private UsersService usersService;
+    
+    @Autowired
+    private UsersRepository usersRepository; 
     
     @RequestMapping("/login")
     public String LoginAction(){
@@ -47,6 +52,14 @@ public class UsersController {
         logger.info(formUsers.toString());
         
         return "redirect:/user/add";        
+    }
+    
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    public String GetMenuAction(Model model){
+        
+        model.addAttribute("users", usersRepository.findAll());
+        
+        return "menuUsers";        
     }
     
 }

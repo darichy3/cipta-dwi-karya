@@ -8,17 +8,17 @@ and open the template in the editor.
     Author     : DhananCici
 */
 
-* {margin:0; padding:0;}
+/** {margin:0; padding:0;}
 
-body {
+*/body {
 	background-color:#333;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#FFF;
 }
 
 nav {
-	background-color:#900; 
-	height:50px; 
+	background-color:#616161; 
+	height:40px; 
 	line-height:50px; 
 	position:relative;
 	width:770px;
@@ -40,7 +40,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-	background-color:#666; 
+	background-color:#778899; 
 	display:block;
 }
 
@@ -51,7 +51,7 @@ nav ul ul {
 	display:none; 
 	list-style:none; 
 	position:absolute; 
-	background-color:#900;
+	background-color:#616161;
 	left:300px; 
 	top:50px; 
 	width:190px;
@@ -66,5 +66,64 @@ nav ul ul li a {
 }
 
 nav ul ul li a:hover {
-	color:#990;
+	color:#778899;
+}
+
+.dropmenu {
+    background: #616161;
+    height: 40px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+}
+.dropmenu li {
+    border-right: solid 1px white;
+    float: left;
+    height: 40px;
+}
+.dropmenu li a {
+    color: #fff;
+    display: block;
+    font: 12px arial, verdana, sans-serif;
+    font-weight: bold;
+    padding: 9px 20px;
+    text-decoration: none;
+}
+.dropmenu li:hover { background: #778899; position: relative; }
+.dropmenu li:hover a { text-decoration: underline; }
+.dropmenu li:hover ul {
+    background-color: #3f4a54;
+    border: 1px solid grey;
+    left: 0px;
+    padding: 3px;
+    top: 30px;
+    width: 160px;
+}
+.dropmenu li:hover ul li { border: none; height: 40px; }
+.dropmenu li:hover ul li a {
+    background-color: #778899;
+    border: 1px solid transparent;
+    color: #fff;
+    display: block;
+    font-size: 11px;
+    height: 40px;
+    line-height: 18px;
+    padding: 0px;
+    text-decoration: none;
+    text-indent: 5px;
+    width: 158px;
+    padding: 3px;
+}
+.dropmenu li:hover ul li a:hover {
+    background: silver;
+    border: solid 1px #444;
+    color: #000;
+    height: 40px;
+    padding: 3px;
+}
+.dropmenu ul {
+    left: -9999px;
+    list-style-type: none;
+    position: absolute;
+    top: -9999px;
 }

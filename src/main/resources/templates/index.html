@@ -19,16 +19,16 @@
 
     <body>
 
-<!--        <nav class="site-header sticky-top py-1">
-            <div class="container d-flex flex-column flex-md-row justify-content-between">-->
+        <!--<nav class="site-header sticky-top py-1">-->
+            <!--<div class="container d-flex flex-column flex-md-row justify-content-between">-->
             <nav>
-                <ul>
-                    <li><a class="py-2 d-none d-md-inline-block" href="#">Home</a></li>
+                <ul class="dropmenu">
+                    <li><a class="py-2 d-none d-md-inline-block" th:href="@{/index}">Home</a></li>
                     <li><a class="py-2 d-none d-md-inline-block" href="#">Master</a>
                         <ul>
-                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/add}">Customer Add</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/add}">Inventory Add</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/menu}">User</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/add}">Customer</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/add}">Inventory</a></li>
                         </ul>
                     </li>
                     <li><a class="py-2 d-none d-md-inline-block" href="#">Transaction</a>
