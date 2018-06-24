@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23 Jun 2018 pada 06.01
+-- Generation Time: 24 Jun 2018 pada 10.50
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -42,7 +42,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id_customer`, `name`, `address`, `phone`, `created_date`, `created_by`) VALUES
-(1, 'Paijo', 'Kemang, Jl. Kemang Barat No. 15', 628567891111, '2018-06-23 01:29:38', 'darichy');
+(1, 'Paijo', 'Kemang, Jl. Kemang Barat No. 15', 628567891111, '2018-06-23 01:29:38', 'darichy'),
+(2, 'DHANAN DWI RIZKI', 'Jl. Musyawarah No. 5A, Rt. 008/Rw. 01,Kel. Ragunan, Kec. Pasar Minggu', 6282211225992, '2018-06-24 02:39:06', 'admin');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,8 @@ INSERT INTO `roles` (`id_roles`, `role`, `id_user`) VALUES
 
 CREATE TABLE `transaction` (
   `id_transaction` int(10) NOT NULL,
-  `transaction_date` date NOT NULL,
+  `transaction_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `delivery_date` date NOT NULL,
   `quantity` int(10) NOT NULL,
   `id_user` int(10) NOT NULL,
   `id_barang` int(5) NOT NULL,
@@ -108,8 +110,8 @@ CREATE TABLE `transaction` (
 -- Dumping data untuk tabel `transaction`
 --
 
-INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `quantity`, `id_user`, `id_barang`, `id_customer`, `note`) VALUES
-(1, '2018-06-23', 5, 2, 1, 1, '');
+INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_barang`, `id_customer`, `note`) VALUES
+(1, '2018-06-22 17:00:00', '0000-00-00', 5, 2, 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -122,18 +124,17 @@ CREATE TABLE `users` (
   `username` varchar(15) NOT NULL,
   `name` varchar(30) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `enable` int(11) DEFAULT NULL
+  `enable` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `name`, `password`, `enabled`, `enable`) VALUES
-(1, 'admin', 'Admin', 'admin123', 1, NULL),
-(2, 'darichy', 'darichy', '123456', 1, NULL),
-(10, 'sdfg', 'vcbn', 'fdh', 1, 1);
+INSERT INTO `users` (`id_user`, `username`, `name`, `password`, `enable`) VALUES
+(1, 'admin', 'Admin', 'admin123', 1),
+(2, 'darichy', 'darichy', '123456', 1),
+(10, 'sdfg', 'vcbn', 'fdh', 1);
 
 --
 -- Indexes for dumped tables
@@ -161,10 +162,7 @@ ALTER TABLE `roles`
 -- Indexes for table `transaction`
 --
 ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`id_transaction`),
-  ADD UNIQUE KEY `id_user` (`id_user`),
-  ADD UNIQUE KEY `id_barang` (`id_barang`),
-  ADD UNIQUE KEY `id_customer` (`id_customer`);
+  ADD PRIMARY KEY (`id_transaction`);
 
 --
 -- Indexes for table `users`
@@ -181,7 +179,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `inventory`
