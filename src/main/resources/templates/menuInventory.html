@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/index" >
+    <head>
+        <title>TODO supply a title</title>  
+    </head>
+    <body>
+        <div layout:fragment="content" class="container py-5">
+            <h3>Spring Boot and Thymeleaf, part 3 - SPRING DATA JPA</h3>
+            <a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/add}">Inventory Add</a>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Sum In</th>
+                    <th>Sum Out</th>
+                    <th>Sum End</th>
+                    <th>Date In</th>
+                    <th>Note</th>
+                </tr>
+                <tr th:each="inventory : ${inventories}">
+                    <td th:text="${inventory.idInventory}">Cell 1</td>
+                    <td th:text="${inventory.name}">Cell 2</td>
+                    <td th:text="${inventory.sumIn}">Cell 3</td>
+                    <td th:text="${inventory.sumOut}">Cell 4</td>
+                    <td th:text="${inventory.sumEnd}">Cell 5</td>
+                    <td th:text="${inventory.dateIn}">Cell 6</td>
+                    <td th:text="${inventory.note}">Cell 7</td>
+                    <td>
+                        <a href="/inventory/edit" th:href="@{/inventory/edit/__${inventory.idInventory}__}">Edit</a>
+                        <a href="/inventory/delete" th:href="@{/inventory/delete/__${inventory.idInventory}__}">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

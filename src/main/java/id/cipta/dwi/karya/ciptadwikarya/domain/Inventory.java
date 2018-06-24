@@ -14,8 +14,8 @@ public class Inventory {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_transaction")
-    private int idTransaction;
+    @Column(name = "id_inventory")
+    private int idInventory;
     
     @Column(name = "name")
     private String name;
@@ -35,13 +35,15 @@ public class Inventory {
     @Column(name = "note")
     private String note;
 
-    public int getIdTransaction() {
-        return idTransaction;
+    public int getIdInventory() {
+        return idInventory;
     }
 
-    public void setIdTransaction(int idTransaction) {
-        this.idTransaction = idTransaction;
+    public void setIdInventory(int idInventory) {
+        this.idInventory = idInventory;
     }
+
+    
 
     public String getName() {
         return name;
@@ -93,12 +95,8 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" + "idTransaction=" + idTransaction + ", name=" + name + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", dateIn=" + dateIn + ", note=" + note + '}';
+        return "Inventory{" + "idInventory=" + idInventory + ", name=" + name + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", dateIn=" + dateIn + ", note=" + note + '}';
     }
-
-    
-    
-    
-
+   
     
 }
