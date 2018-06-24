@@ -13,21 +13,42 @@
 
         <!-- Custom styles for this template -->
         <link th:href="@{/css/product.css}" rel="stylesheet" />
+        
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
     </head>
 
     <body>
 
-        <nav class="site-header sticky-top py-1">
-            <div class="container d-flex flex-column flex-md-row justify-content-between">
-                <a class="py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-                <a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a>
-            </div>
-        </nav>
+<!--        <nav class="site-header sticky-top py-1">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">-->
+            <nav>
+                <ul>
+                    <li><a class="py-2 d-none d-md-inline-block" href="#">Home</a></li>
+                    <li><a class="py-2 d-none d-md-inline-block" href="#">Master</a>
+                        <ul>
+                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/add}">Customer Add</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/add}">Inventory Add</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="py-2 d-none d-md-inline-block" href="#">Transaction</a>
+                        <ul>
+                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 1</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 2</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="py-2 d-none d-md-inline-block" href="#">Report</a>
+                        <ul>
+                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 1</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 2</a></li>
+                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a></li>
+                </ul>
+            <!--</div>-->
+            </nav>
         
         <!-- Main content -->
         <div layout:fragment="content" class="container py-5">
