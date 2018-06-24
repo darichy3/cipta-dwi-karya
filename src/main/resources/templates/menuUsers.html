@@ -3,32 +3,36 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="/index" >
     <head>
-        <title>TODO supply a title</title>  
+        <title>User</title>  
     </head>
     <body>
         <div layout:fragment="content" class="container py-5">
-            <h3>Spring Boot and Thymeleaf, part 3 - SPRING DATA JPA</h3>
-            <a class="py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a>
-            <table>
-                <tr>
-                    <th>No</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>Password</th>
-                    <th>Enable</th>
-                    <th>Action</th>
-                </tr>
-                <tr th:each="user : ${users}">
-                    <td th:text="${user.id}">Cell 1</td>
-                    <td th:text="${user.username}">Cell 2</td>
-                    <td th:text="${user.name}">Cell 3</td>
-                    <td th:text="${user.password}">Cell 4</td>
-                    <td th:text="${user.enable}">Cell 5</td>
-                    <td>
-                        <a href="/user/edit" th:href="@{/user/edit/__${user.id}__}">Edit</a>
-                        <a href="/user/delete" th:href="@{/user/delete/__${user.id}__}">Delete</a>
-                    </td>
-                </tr>
+            <h3 style="text-align: center;">List Admin Cipta Dwi Karya</h3>
+            <a type="button" class="btn btn-success py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a>
+            <table class="table table-bordered">
+                <thead style="background-color: #808896; color: white;">
+                    <tr>
+                        <th>No</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Password</th>
+                        <th>Enable</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: #E8ECF5; color:black;">
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">Cell 1</td>
+                        <td th:text="${user.username}">Cell 2</td>
+                        <td th:text="${user.name}">Cell 3</td>
+                        <td th:text="${user.password}">Cell 4</td>
+                        <td th:text="${user.enable}">Cell 5</td>
+                        <td>
+                            <a type="button" class="btn btn-primary" href="/user/edit" th:href="@{/user/edit/__${user.id}__}">Edit</a>
+                            <a type="button" class="btn btn-danger" href="/user/delete" th:href="@{/user/delete/__${user.id}__}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </body>

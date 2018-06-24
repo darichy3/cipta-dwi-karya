@@ -4,9 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       >
     <head>
-        <link rel="icon" th:href="@{/img/favicon.ico}" />
+        <link rel="icon" th:href="@{/img/cdk.jpg}" />
 
-        <title>Product example for Bootstrap</title>
+        <title>Home</title>
 
         <!-- Bootstrap core CSS -->
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
@@ -15,55 +15,63 @@
         <link th:href="@{/css/product.css}" rel="stylesheet" />
         
         <link th:href="@{/css/style.css}" rel="stylesheet" />
+        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
     </head>
 
     <body>
-
-        <!--<nav class="site-header sticky-top py-1">-->
-            <!--<div class="container d-flex flex-column flex-md-row justify-content-between">-->
-            <nav>
-                <ul class="dropmenu">
-                    <li><a class="py-2 d-none d-md-inline-block" th:href="@{/index}">Home</a></li>
-                    <li><a class="py-2 d-none d-md-inline-block" href="#">Master</a>
-                        <ul>
-                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/menu}">User</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/menu}">Customer</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/menu}">Inventory</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="py-2 d-none d-md-inline-block" href="#">Transaction</a>
-                        <ul>
-                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 1</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 2</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 3</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="py-2 d-none d-md-inline-block" href="#">Report</a>
-                        <ul>
-                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 1</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 2</a></li>
-                            <li><a class="py-2 d-none d-md-inline-block" href="">Products 3</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a></li>
-                </ul>
-            <!--</div>-->
-            </nav>
-        
-        <!-- Main content -->
-        <div layout:fragment="content" class="container py-5">
-                Index Content
-        </div>
-
-        <footer class="container py-5">
+        <div class="container">
             <div class="row">
-                <div class="col-12 col-md">
-                    <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-                </div>  
+                <div class="col-md-12">
+                <!--<nav class="site-header sticky-top py-1">-->
+                <!--<div class="container d-flex flex-column flex-md-row justify-content-between">-->
+                    <div class="col-md-12">
+                        <nav>
+                            <ul class="dropmenu">
+                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/index}">Home</a></li>
+                                <li><a class="py-2 d-none d-md-inline-block" href="#">Master</a>
+                                    <ul>
+                                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/menu}">User</a></li>
+                                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/menu}">Customer</a></li>
+                                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/menu}">Inventory</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="py-2 d-none d-md-inline-block" href="#">Transaction</a>
+                                    <ul>
+                                        <li><a class="py-2 d-none d-md-inline-block" href="">Products 1</a></li>
+                                        <li><a class="py-2 d-none d-md-inline-block" href="">Products 2</a></li>
+                                        <li><a class="py-2 d-none d-md-inline-block" href="">Products 3</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="py-2 d-none d-md-inline-block" href="#">Report</a>
+                                    <ul>
+                                        <li><a class="py-2 d-none d-md-inline-block" href="">Products 1</a></li>
+                                        <li><a class="py-2 d-none d-md-inline-block" href="">Products 2</a></li>
+                                        <li><a class="py-2 d-none d-md-inline-block" href="">Products 3</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a></li>
+                            </ul>
+                        <!--</div>-->
+                        </nav>
+                    </div>
+
+                    <!-- Main content -->
+                    <div layout:fragment="content" class="container py-5">
+                        <h1 style="text-align: center;"> Selamat Datang di menu Admin PT. Cipta Dwi Karya</h1>
+                    </div>
+
+                    <footer class="container py-5">
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+                            </div>  
+                        </div>
+                    </footer>
+                    
+                </div>
             </div>
-        </footer>
-
-
+        </div>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -71,6 +79,7 @@
         <script th:src="@{/js/vendor/popper.min.js}"></script>
         <script th:src="@{/js/bootstrap.min.js}"></script>
         <script th:src="@{/js/holder.min.js}"></script>
+
         <script>
             Holder.addTheme('thumb', {
                 bg: '#55595c',

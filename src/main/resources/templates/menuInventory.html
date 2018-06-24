@@ -7,31 +7,36 @@
     </head>
     <body>
         <div layout:fragment="content" class="container py-5">
-            <h3>Spring Boot and Thymeleaf, part 3 - SPRING DATA JPA</h3>
-            <a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/add}">Inventory Add</a>
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Sum In</th>
-                    <th>Sum Out</th>
-                    <th>Sum End</th>
-                    <th>Date In</th>
-                    <th>Note</th>
-                </tr>
-                <tr th:each="inventory : ${inventories}">
-                    <td th:text="${inventory.idInventory}">Cell 1</td>
-                    <td th:text="${inventory.name}">Cell 2</td>
-                    <td th:text="${inventory.sumIn}">Cell 3</td>
-                    <td th:text="${inventory.sumOut}">Cell 4</td>
-                    <td th:text="${inventory.sumEnd}">Cell 5</td>
-                    <td th:text="${inventory.dateIn}">Cell 6</td>
-                    <td th:text="${inventory.note}">Cell 7</td>
-                    <td>
-                        <a href="/inventory/edit" th:href="@{/inventory/edit/__${inventory.idInventory}__}">Edit</a>
-                        <a href="/inventory/delete" th:href="@{/inventory/delete/__${inventory.idInventory}__}">Delete</a>
-                    </td>
-                </tr>
+            <h3 style="text-align: center;">Menu Inventory Cipta Dwi Karya</h3>
+            <a type="button" class="btn btn-success py-2 d-none d-md-inline-block" th:href="@{/inventory/add}">Inventory Add</a>
+            <table class="table table-bordered">
+                <thead style="background-color: #808896; color: white;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Sum In</th>
+                        <th>Sum Out</th>
+                        <th>Sum End</th>
+                        <th>Date In</th>
+                        <th>Note</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: #E8ECF5; color:black;">
+                    <tr th:each="inventory : ${inventories}">
+                        <td th:text="${inventory.idInventory}">Cell 1</td>
+                        <td th:text="${inventory.name}">Cell 2</td>
+                        <td th:text="${inventory.sumIn}">Cell 3</td>
+                        <td th:text="${inventory.sumOut}">Cell 4</td>
+                        <td th:text="${inventory.sumEnd}">Cell 5</td>
+                        <td th:text="${inventory.dateIn}">Cell 6</td>
+                        <td th:text="${inventory.note}">Cell 7</td>
+                        <td>
+                            <a type="button" class="btn btn-primary" href="/inventory/edit" th:href="@{/inventory/edit/__${inventory.idInventory}__}">Edit</a>
+                            <a type="button" class="btn btn-danger" href="/inventory/delete" th:href="@{/inventory/delete/__${inventory.idInventory}__}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </body>

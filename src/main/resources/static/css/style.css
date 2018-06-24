@@ -11,7 +11,7 @@ and open the template in the editor.
 /** {margin:0; padding:0;}
 
 */body {
-	background-color:#333;
+	background-color:#d2d6de;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#FFF;
 }
@@ -21,7 +21,7 @@ nav {
 	height:40px; 
 	line-height:50px; 
 	position:relative;
-	width:770px;
+	width:100%;
 	margin:auto;
 	margin-top:80px;
 }

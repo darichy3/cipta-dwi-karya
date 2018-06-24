@@ -8,6 +8,8 @@
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
         <!-- Theme style -->
         <link rel="stylesheet" th:href="@{/css/AdminLTE.min.css}" />
+        
+        <link rel="stylesheet" th:ref="@{/css/login.css}" />
 
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
@@ -15,11 +17,11 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="#"><b>Admin</b>LTE</a>
+                <a href="#"><b>Admin</b> Cipta Dwi Karya</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Silahkan masukkan username dan password</p>
 
                 <form th:action="@{/user/login}" method="post">
                     <div class="form-group has-feedback">
@@ -30,13 +32,13 @@
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
-                    <div class="row">
+                    <!--<div class="row">-->
                         <!-- /.col -->
-                        <div class="col-xs-4 pull-right">
+                        <div class="col-md-12">
                             <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                         </div>
                         <!-- /.col -->
-                    </div>
+                    <!--</div>-->
                 </form>
 
             </div>
