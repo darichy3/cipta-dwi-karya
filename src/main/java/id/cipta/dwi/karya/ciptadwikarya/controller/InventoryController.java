@@ -45,7 +45,7 @@ public class InventoryController {
         
         logger.info(formInventory.toString());
         
-        return "redirect:/inventory/add";        
+        return "redirect:/inventory/menu";        
     }
     
     @RequestMapping(value = "/menu", method = RequestMethod.GET)

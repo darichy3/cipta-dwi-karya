@@ -46,7 +46,7 @@ public class CustomersController {
         
         logger.info(formCustomers.toString());
         
-        return "redirect:/customer/add";        
+        return "redirect:/customer/menu";        
     }
     
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
