@@ -34,7 +34,7 @@ public class UsersServiceImpl implements UsersService{
             logger.info(userValid.toString());
             if(users != null){
                 Roles roles = new Roles();
-                roles.setRole("ADMIN");
+                roles.setRole("ROLE_ADMIN");
                 roles.setIdUser(userValid);
                 rolesRepository.save(roles);
             }            
