@@ -24,8 +24,14 @@ public class TransactionServiceImpl implements TransactionService{
     public Transaction saveTransaction(Transaction transaction) {
         
         if(transaction != null){
-            Transaction transactionValid = repository.save(transaction);
-            logger.info(transactionValid.toString());
+            if (transaction.getIdTransaction() >0) {
+                Transaction transValid = repository.findOne(transaction.getIdTransaction());
+                transaction.setTransactionDate(transValid.getTransactionDate());
+                transaction = repository.save(transaction);
+            }else{
+                transaction = repository.save(transaction);
+            }
+            logger.info(transaction.toString());
                    
         }        
         return transaction;        
