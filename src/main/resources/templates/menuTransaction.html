@@ -3,12 +3,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="/index" >
     <head>
-        <title>List Inventory Menu</title>  
+        <title>List Transaction Menu</title>  
     </head>
     <body>
         <div layout:fragment="content" class="container py-5">
-            <h3 style="text-align: center;">Menu Inventory Cipta Dwi Karya</h3>
-            <a type="button" class="btn btn-success py-2 d-none d-md-inline-block" th:href="@{/transaction/add}">Inventory Add</a>
+            <h3 style="text-align: center;">Menu Transaction Cipta Dwi Karya</h3>
+            <a type="button" class="btn btn-success py-2 d-none d-md-inline-block" th:href="@{/transaction/add}">Transaction Add</a>
             <table class="table table-bordered">
                 <thead style="background-color: #808896; color: white;">
                     <tr>
@@ -25,8 +25,8 @@
                     </tr>
                 </thead>
                 <tbody style="background-color: #E8ECF5; color:black;">
-                    <tr th:each="transaction : ${transactions}">
-                        <td th:text="${transaction.idTransaction}">Cell 1</td>
+                    <tr th:each="transaction,stat : ${transactions}">
+                        <td th:text="${stat.index}+1">Cell 1</td>
                         <td th:text="${transaction.transactionDate}">Cell 2</td>
                         <td th:text="${transaction.deliveryDate}">Cell 3</td>
                         <td th:text="${transaction.quantity}">Cell 4</td>
@@ -37,6 +37,7 @@
                         <td th:text="${transaction.idCustomer.phone}">Cell 9</td>
                         <td th:text="${transaction.note}">Cell 10</td>
                         <td>
+                            <a type="button" class="btn btn-primary" href="/transaction/print" th:href="@{/transaction/print/__${transaction.idInventory}__}">Safeconduct</a>
                             <a type="button" class="btn btn-primary" href="/transaction/edit" th:href="@{/transaction/edit/__${transaction.idInventory}__}">Edit</a>
                             <a type="button" class="btn btn-danger" href="/transaction/delete" th:href="@{/transaction/delete/__${transaction.idInventory}__}">Delete</a>
                         </td>

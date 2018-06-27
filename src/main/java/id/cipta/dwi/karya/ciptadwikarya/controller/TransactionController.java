@@ -1,17 +1,25 @@
 package id.cipta.dwi.karya.ciptadwikarya.controller;
 
+import id.cipta.dwi.karya.ciptadwikarya.domain.Customers;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormTransaction;
+import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
 import id.cipta.dwi.karya.ciptadwikarya.service.TransactionService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,26 +39,51 @@ public class TransactionController {
     @Autowired
     private TransactionRepository transactionRepository; 
     
+    @Autowired
+    private CustomersRepository customerRepository;
+    
+    @Autowired
+    private InventoryRepository inventoryRepository;
+    
+    @Autowired
+    private UsersRepository userRepository;
+    
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String GetAddAction(FormTransaction formTransaction){
+    public String GetAddAction(FormTransaction formTransaction, Model model, Customers customer, Inventory inventory){
         
+        
+        model.addAttribute("customers", customerRepository.findAll());
+        model.addAttribute("inventories", inventoryRepository.findAll());
         return "addTransaction";        
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String PostAddAction(FormTransaction formTransaction){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUser = authentication.getName();
         
-//        Transaction transaction = new Transaction();
-//        transaction.setName(formTransaction.getName());
-//        transaction.setSumIn(formTransaction.getSumIn());
-//        transaction.setSumOut(0);
-//        transaction.setSumEnd(0);
-//        transaction.setNote(formTransaction.getNote());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	LocalDateTime now = LocalDateTime.now();
+        logger.info("Date to day: "+dtf.format(now));
         
-//        transactionService.saveTransaction(transaction);
+        try{
+            Transaction transaction = new Transaction();
+            transaction.setTransactionDate(dtf.format(now));
+            transaction.setDeliveryDate(formTransaction.getDeliveryDate());
+            transaction.setQuantity(formTransaction.getQuantity());
+            transaction.setIdUser(userRepository.findByName(loginUser));
+            transaction.setIdCustomer(customerRepository.findByIdCustomer(formTransaction.getIdCustomer()));
+            transaction.setIdInventory(inventoryRepository.findByIdInventory(formTransaction.getIdInventory()));
+            transaction.setNote(formTransaction.getNote());
+
+            transactionService.saveTransaction(transaction);
         
-        logger.info(formTransaction.toString());
-        
+            logger.info(formTransaction.toString());
+            logger.info(transaction.toString());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
         return "redirect:/transaction/menu";        
     }
     
@@ -96,5 +129,13 @@ public class TransactionController {
         return "menuTransaction";
     }
     
-    
+    @RequestMapping(value={"/print","/print/{idTransaction}"}, method = RequestMethod.GET)
+    public String GetPrintAction(Model model, @PathVariable(required = false, name = "idTransaction") Integer idTransaction) {
+        if (null != idTransaction) {
+                model.addAttribute("transactions", transactionService.findOne(idTransaction));
+        } else {
+            model.addAttribute("transactions", new Transaction());
+        }
+        return "editTransaction";
+    }
 }

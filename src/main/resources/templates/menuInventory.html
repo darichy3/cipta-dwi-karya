@@ -23,8 +23,8 @@
                     </tr>
                 </thead>
                 <tbody style="background-color: #E8ECF5; color:black;">
-                    <tr th:each="inventory : ${inventories}">
-                        <td th:text="${inventory.idInventory}">Cell 1</td>
+                    <tr th:each="inventory,stat : ${inventories}">
+                        <td th:text="${stat.index}+1">Cell 1</td>
                         <td th:text="${inventory.name}">Cell 2</td>
                         <td th:text="${inventory.sumIn}">Cell 3</td>
                         <td th:text="${inventory.sumOut}">Cell 4</td>

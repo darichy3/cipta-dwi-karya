@@ -26,7 +26,7 @@ public class Transaction {
     private String transactionDate;
     
     @Column(name = "delivery_date")
-    private Date deliveryDate;
+    private String deliveryDate;
     
     @Column(name = "quantity")
     private int quantity;
@@ -62,11 +62,11 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
-    public Date getDeliveryDate() {
+    public String getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
