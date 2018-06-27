@@ -67,5 +67,10 @@ public class TransactionServiceImpl implements TransactionService{
     public void deleteTransaction(Integer idTransaction) {
         repository.delete(idTransaction);
     }
+
+    @Override
+    public List<Transaction> findByTransactionDateBetween(String tglAwal, String tglAkhir) {
+        return repository.findByTransactionDateBetween(tglAwal, tglAkhir);
+    }
     
 }

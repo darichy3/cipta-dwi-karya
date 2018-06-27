@@ -1,7 +1,10 @@
 package id.cipta.dwi.karya.ciptadwikarya.controller;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Customers;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
+import id.cipta.dwi.karya.ciptadwikarya.form.FormSafeConduct;
 import id.cipta.dwi.karya.ciptadwikarya.service.CustomersReportService;
+import id.cipta.dwi.karya.ciptadwikarya.service.TransactionService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,9 +26,12 @@ public class ReportController {
 
     @Autowired
     private ApplicationContext applicationContext;
-    
+
     @Autowired
     private CustomersReportService customersReportService;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @RequestMapping(value = "/customers")
     public String ReportAction() {
@@ -34,55 +40,83 @@ public class ReportController {
 
     @RequestMapping(value = "/view", method = RequestMethod.POST)
     public ModelAndView viewReport(HttpServletRequest request) {
-        
+
         String jnsLap = request.getParameter("jnsLap");
         String tglAwal = request.getParameter("tglAwal");
         String tglAkhir = request.getParameter("tglAkhir");
 
         JasperReportsPdfView jPdf = new JasperReportsPdfView();
-        jPdf.setUrl("classpath:report/reportCustomer.jrxml");
-        jPdf.setApplicationContext(applicationContext);
+
         Map<String, Object> params = new HashMap();
-        
-        if(jnsLap.trim().equalsIgnoreCase("Report Customers")){
-             params.put("datasource", dataCustomers(tglAwal, tglAkhir));
-        }else if(jnsLap.trim().equalsIgnoreCase("Report Transaction")){ //disamakan dengan combobox html
-             params.put("datasource", dummyData());        
-        }else{
-            params.put("datasource", dummyData());        
+        if (jnsLap.trim().equalsIgnoreCase("Report Customers")) {
+            jPdf.setUrl("classpath:report/reportCustomer.jrxml");
+            params.put("datasource", dataCustomers(tglAwal, tglAkhir));
+        } else if (jnsLap.trim().equalsIgnoreCase("Report Transaction")) { //disamakan dengan combobox html
+            jPdf.setUrl("classpath:report/reportTransactions.jrxml");
+            params.put("datasource", dataListTransaction(tglAwal, tglAkhir));
+        } else {
+            jPdf.setUrl("classpath:report/reportCustomer.jrxml");
+            params.put("datasource", dummyData());
         }
-        
+
+        jPdf.setApplicationContext(applicationContext);
+
         params.put("jenisLaporan", jnsLap);
         params.put("tanggalAwal", parseToDate(tglAwal));
         params.put("tanggalAkhir", parseToDate(tglAkhir));
         return new ModelAndView(jPdf, params);
     }
-    
-    private List<Customers> dummyData(){
+
+    private List<FormSafeConduct> dataListTransaction(String tglAwal, String tglAkhir) {
+
+        List<Transaction> listTrans = transactionService.findByTransactionDateBetween(tglAwal, tglAkhir);
+
+        List<FormSafeConduct> listForms = new ArrayList();
+
+        for (Transaction transaction : listTrans) {
+            FormSafeConduct formSafeConduct = new FormSafeConduct();
+            formSafeConduct.setAdmin(transaction.getIdUser().getName());
+            formSafeConduct.setBarang(transaction.getIdInventory().getName());
+            formSafeConduct.setCustAddress(transaction.getIdCustomer().getAddress());
+            formSafeConduct.setCustName(transaction.getIdCustomer().getName());
+            formSafeConduct.setCustPhone(transaction.getIdCustomer().getPhone());
+            formSafeConduct.setDelivDate(parseToDate(transaction.getDeliveryDate()));
+            formSafeConduct.setNote(transaction.getNote());
+            formSafeConduct.setQuantity(transaction.getQuantity());
+            formSafeConduct.setTransDate(parseToDate(transaction.getTransactionDate()));
+            listForms.add(formSafeConduct);
+        }
+
+        return listForms;
+    }
+
+    private List<Customers> dummyData() {
         List<Customers> customerses = new ArrayList();
-        for(int i = 0 ; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             Customers customers = new Customers();
-            customers.setName("Dummy "+i+" Name");
-            customers.setAddress("Dummy "+i+" Address");
-            customers.setPhone("Dummy "+i+" Phone");
+            customers.setName("Dummy " + i + " Name");
+            customers.setAddress("Dummy " + i + " Address");
+            customers.setPhone("Dummy " + i + " Phone");
             customerses.add(customers);
         }
         return customerses;
     }
-    
-    private List<Customers> dataCustomers(String tglAwal, String tglAkhir){
+
+    private List<Customers> dataCustomers(String tglAwal, String tglAkhir) {
         return customersReportService.reportCustomer(parseToDate(tglAwal), parseToDate(tglAkhir));
     }
-    
-    private Date parseToDate(String tgl){
+
+    private Date parseToDate(String tgl) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
+            if(tgl != null){
             date = sdf.parse(tgl);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
-}
+    }
 
 }

@@ -7,8 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Integer>{
+public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
+
     List<Transaction> findByTransactionDate(String transactionDate);
-    
-     Transaction findByIdTransaction(Integer idTransaction);
+
+    List<Transaction> findByTransactionDateBetween(String tglAwal, String tglAkhir);
+
+    Transaction findByIdTransaction(Integer idTransaction);
 }

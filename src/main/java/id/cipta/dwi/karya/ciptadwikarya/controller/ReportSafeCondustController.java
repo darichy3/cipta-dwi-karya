@@ -33,7 +33,6 @@ public class ReportSafeCondustController {
 
     @RequestMapping(value = "/safeConduct/{idTrans}", method = RequestMethod.GET)
     public ModelAndView viewReport(@PathVariable("idTrans") int idTrans) {
-        System.out.println("ID : "+idTrans);
         
         List<FormSafeConduct> conducts = new ArrayList();
         conducts.add(dataTransaction(idTrans));
