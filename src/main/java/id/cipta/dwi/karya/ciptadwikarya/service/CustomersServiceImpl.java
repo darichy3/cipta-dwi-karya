@@ -37,7 +37,7 @@ public class CustomersServiceImpl implements CustomersService{
     public Customers updateCustomers(@Valid @ModelAttribute("customers") Customers customers) {
         logger.info("Result customers: "+customers.toString());
         if(customers != null){
-            Customers customersDb = repository.findById(customers.getId());
+            Customers customersDb = repository.findByIdCustomer(customers.getIdCustomer());
             customersDb.setName(customers.getName());
             customersDb.setAddress(customers.getAddress());
             customersDb.setPhone(customers.getPhone());
@@ -54,13 +54,13 @@ public class CustomersServiceImpl implements CustomersService{
     }
 
     @Override
-    public Customers findOne(Integer id) {
-       return repository.findOne(id);
+    public Customers findOne(Integer idCustomer) {
+       return repository.findOne(idCustomer);
     }
 
     @Override
-    public void deleteCustomer(Integer id) {
-        repository.delete(id);
+    public void deleteCustomer(Integer idCustomer) {
+        repository.delete(idCustomer);
     }
     
 }

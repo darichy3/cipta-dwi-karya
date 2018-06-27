@@ -66,17 +66,17 @@ public class UsersController {
         return "menuUsers";        
     }
     
-    @RequestMapping(value={"/edit","/edit/{id}"}, method = RequestMethod.GET)
-    public String GetEditAction(Model model, @PathVariable(required = false, name = "id") Integer id) {
-        if (null != id) {
-                model.addAttribute("users", usersService.findOne(id));
+    @RequestMapping(value={"/edit","/edit/{idUser}"}, method = RequestMethod.GET)
+    public String GetEditAction(Model model, @PathVariable(required = false, name = "idUser") Integer idUser) {
+        if (null != idUser) {
+                model.addAttribute("users", usersService.findOne(idUser));
         } else {
             model.addAttribute("users", new Users());
         }
         return "editUsers";
     }
     
-    @RequestMapping(value={"/edit","/edit/{id}"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/edit","/edit/{idUser}"}, method = RequestMethod.POST)
     public String PostEditAction(Model model, @Valid @ModelAttribute("users") Users users, FormUsers formUsers) {
         
         users.setUsername(formUsers.getUsername());
@@ -89,9 +89,9 @@ public class UsersController {
         return "menuUsers";
     }
 
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public String GetDeleteAction(Model model, @PathVariable(required = true, name = "id") Integer id) {
-        usersService.deleteUsers(id);
+    @RequestMapping(value="/delete/{idUser}", method = RequestMethod.GET)
+    public String GetDeleteAction(Model model, @PathVariable(required = true, name = "idUser") Integer idUser) {
+        usersService.deleteUsers(idUser);
         model.addAttribute("users", usersService.findAll());
         return "menuUsers";
     }

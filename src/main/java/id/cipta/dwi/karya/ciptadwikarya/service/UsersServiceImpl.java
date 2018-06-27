@@ -62,7 +62,7 @@ public class UsersServiceImpl implements UsersService{
     public Users updateUsers(@Valid @ModelAttribute("users")Users users) {
         
         if(users != null){
-            Users userDb = repository.findById(users.getId());
+            Users userDb = repository.findByIdUser(users.getIdUser());
             userDb.setUsername(users.getUsername());
             userDb.setPassword(users.getPassword());
             userDb.setName(users.getName());

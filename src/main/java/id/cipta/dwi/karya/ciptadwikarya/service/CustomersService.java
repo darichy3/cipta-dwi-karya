@@ -12,8 +12,8 @@ public interface CustomersService {
     
     List<Customers> findAll();
     
-    Customers findOne(Integer id);
+    Customers findOne(Integer idCustomer);
     
-    void deleteCustomer(Integer id);
+    void deleteCustomer(Integer idCustomer);
     
 }

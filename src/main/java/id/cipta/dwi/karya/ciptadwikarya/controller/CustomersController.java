@@ -70,17 +70,17 @@ public class CustomersController {
         return "menuCustomers";        
     }
     
-     @RequestMapping(value={"/edit","/edit/{id}"}, method = RequestMethod.GET)
-    public String GetEditAction(Model model, @PathVariable(required = false, name = "id") Integer id) {
-        if (null != id) {
-                model.addAttribute("customers", customersService.findOne(id));
+     @RequestMapping(value={"/edit","/edit/{idCustomer}"}, method = RequestMethod.GET)
+    public String GetEditAction(Model model, @PathVariable(required = false, name = "idCustomer") Integer idCustomer) {
+        if (null != idCustomer) {
+                model.addAttribute("customers", customersService.findOne(idCustomer));
         } else {
             model.addAttribute("customers", new Customers());
         }
         return "editCustomers";
     }
     
-    @RequestMapping(value={"/edit","/edit/{id}"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/edit","/edit/{idCustomer}"}, method = RequestMethod.POST)
     public String PostEditAction(Model model, @Valid @ModelAttribute("customers") Customers customers, FormCustomers formCustomers) {
         
         //Mengambil info dari user login
@@ -98,9 +98,9 @@ public class CustomersController {
         return "menuCustomers";
     }
 
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public String GetDeleteAction(Model model, @PathVariable(required = true, name = "id") Integer id) {
-        customersService.deleteCustomer(id);
+    @RequestMapping(value="/delete/{idCustomer}", method = RequestMethod.GET)
+    public String GetDeleteAction(Model model, @PathVariable(required = true, name = "idCustomer") Integer idCustomer) {
+        customersService.deleteCustomer(idCustomer);
         model.addAttribute("customers", customersService.findAll());
         return "menuCustomers";
     }

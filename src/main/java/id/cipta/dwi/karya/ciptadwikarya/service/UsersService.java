@@ -11,8 +11,8 @@ public interface UsersService {
     
     List<Users> findAll();
     
-    Users findOne(Integer id);
+    Users findOne(Integer idUser);
     
-    void deleteUsers(Integer id);
+    void deleteUsers(Integer idUser);
     
 }

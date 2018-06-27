@@ -23,15 +23,15 @@
                 </thead>
                 <tbody style="background-color: #E8ECF5; color:black">
                     <tr th:each="customer : ${customers}">
-                        <td th:text="${customer.id}">Cell 1</td>
+                        <td th:text="${customer.idCustomer}">Cell 1</td>
                         <td th:text="${customer.name}">Cell 2</td>
                         <td th:text="${customer.address}">Cell 3</td>
                         <td th:text="${customer.phone}">Cell 4</td>
                         <td th:text="${customer.createdDate}">Cell 5</td>
                         <td th:text="${customer.createdBy}">Cell 6</td>
                         <td>
-                            <a type="button" class="btn btn-primary" href="/customer/edit" th:href="@{/customer/edit/__${customer.id}__}">Edit</a>
-                            <a type="button" class="btn btn-danger" href="/customer/delete" th:href="@{/customer/delete/__${customer.id}__}">Delete</a>
+                            <a type="button" class="btn btn-primary" href="/customer/edit" th:href="@{/customer/edit/__${customer.idCustomer}__}">Edit</a>
+                            <a type="button" class="btn btn-danger" href="/customer/delete" th:href="@{/customer/delete/__${customer.idCustomer}__}">Delete</a>
                         </td>
                     </tr>
                 </tbody>

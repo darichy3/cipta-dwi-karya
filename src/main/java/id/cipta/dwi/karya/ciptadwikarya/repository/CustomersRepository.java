@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     List<Customers> findByName(String name);
     
-    Customers findById(Integer id);
+    Customers findByIdCustomer(Integer idCustomer);
     
     List<Customers> findByCreatedDateBetween(Date tglAwal, Date tglAkhir);
     

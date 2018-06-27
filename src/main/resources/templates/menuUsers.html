@@ -28,8 +28,8 @@
                         <td th:text="${user.password}">Cell 4</td>
                         <td th:text="${user.enable}">Cell 5</td>
                         <td>
-                            <a type="button" class="btn btn-primary" href="/user/edit" th:href="@{/user/edit/__${user.id}__}">Edit</a>
-                            <a type="button" class="btn btn-danger" href="/user/delete" th:href="@{/user/delete/__${user.id}__}">Delete</a>
+                            <a type="button" class="btn btn-primary" href="/user/edit" th:href="@{/user/edit/__${user.idUser}__}">Edit</a>
+                            <a type="button" class="btn btn-danger" href="/user/delete" th:href="@{/user/delete/__${user.idUser}__}">Delete</a>
                         </td>
                     </tr>
                 </tbody>

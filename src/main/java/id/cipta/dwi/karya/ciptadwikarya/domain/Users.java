@@ -14,7 +14,7 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_user")
-    private int id;
+    private int idUser;
     
     @Column(name = "username")
     private String username;
@@ -28,12 +28,12 @@ public class Users {
     @Column(name = "enable")
     private int enable;
 
-    public int getId() {
-        return id;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getUsername() {
@@ -70,6 +70,6 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", username=" + username + ", name=" + name + ", password=" + password + ", enable=" + enable + '}';
+        return "Users{" + "idUser=" + idUser + ", username=" + username + ", name=" + name + ", password=" + password + ", enable=" + enable + '}';
     }
 }
