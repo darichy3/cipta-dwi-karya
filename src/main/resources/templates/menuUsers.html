@@ -21,8 +21,8 @@
                     </tr>
                 </thead>
                 <tbody style="background-color: #E8ECF5; color:black;">
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.id}">Cell 1</td>
+                    <tr th:each="user,stat : ${users}">
+                        <td th:text="${stat.index}+1">Cell 1</td>
                         <td th:text="${user.username}">Cell 2</td>
                         <td th:text="${user.name}">Cell 3</td>
                         <td th:text="${user.password}">Cell 4</td>

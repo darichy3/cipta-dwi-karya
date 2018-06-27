@@ -27,10 +27,10 @@ public class Customers {
     private String phone;
     
     @Column(name = "created_date")
-    private Date created_date;
+    private Date createdDate;
     
     @Column(name = "created_by")
-    private String created_by;
+    private String createdBy;
 
     public int getId() {
         return id;
@@ -64,27 +64,24 @@ public class Customers {
         this.phone = phone;
     }
 
-    public Date getCreated_date() {
-        return created_date;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public String getCreated_by() {
-        return created_by;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     @Override
     public String toString() {
-        return "Customers{" + "id=" + id + ", name=" + name + ", address=" + address + ", phone=" + phone + ", created_date=" + created_date + ", created_by=" + created_by + '}';
-    }
-    
-    
-    
+        return "Customers{" + "id=" + id + ", name=" + name + ", address=" + address + ", phone=" + phone + ", createdDate=" + createdDate + ", createdBy=" + createdBy + '}';
+    }    
 }

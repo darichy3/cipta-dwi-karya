@@ -27,8 +27,8 @@
                         <td th:text="${customer.name}">Cell 2</td>
                         <td th:text="${customer.address}">Cell 3</td>
                         <td th:text="${customer.phone}">Cell 4</td>
-                        <td th:text="${customer.created_date}">Cell 5</td>
-                        <td th:text="${customer.created_by}">Cell 6</td>
+                        <td th:text="${customer.createdDate}">Cell 5</td>
+                        <td th:text="${customer.createdBy}">Cell 6</td>
                         <td>
                             <a type="button" class="btn btn-primary" href="/customer/edit" th:href="@{/customer/edit/__${customer.id}__}">Edit</a>
                             <a type="button" class="btn btn-danger" href="/customer/delete" th:href="@{/customer/delete/__${customer.id}__}">Delete</a>

@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,20 +32,28 @@ public class CustomersController {
     private CustomersRepository customersRepository; 
     
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String GetAddAction(FormCustomers formCustomers){
+    public String GetAddAction(FormCustomers formCustomers){        
+        //Mengambil info dari user login
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUser = authentication.getName();
+        
+        logger.info("User Login : "+loginUser);
         
         return "addCustomer";        
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String PostAddAction(FormCustomers formCustomers){
-
+        
+        //Mengambil info dari user login
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUser = authentication.getName();
         
         Customers customers = new Customers();
         customers.setName(formCustomers.getName());
         customers.setAddress(formCustomers.getAddress());
         customers.setPhone(formCustomers.getPhone());
-        customers.setCreated_by("admin");
+        customers.setCreatedBy(loginUser);
         
         customersService.saveCustomer(customers);
         
@@ -73,10 +83,14 @@ public class CustomersController {
     @RequestMapping(value={"/edit","/edit/{id}"}, method = RequestMethod.POST)
     public String PostEditAction(Model model, @Valid @ModelAttribute("customers") Customers customers, FormCustomers formCustomers) {
         
+        //Mengambil info dari user login
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUser = authentication.getName();
+        
         customers.setName(formCustomers.getName());
         customers.setAddress(formCustomers.getAddress());
         customers.setPhone(formCustomers.getPhone());
-        customers.setCreated_by("admin");
+        customers.setCreatedBy(loginUser);
         
         customersService.updateCustomers(customers);
         logger.info(formCustomers.toString());
