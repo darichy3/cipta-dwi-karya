@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ce41de17-8336-4663-be6d-7da3d3c3ef18">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="163"/>
+	<property name="ireport.x" value="57"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="tanggalAwal" class="java.util.Date"/>
 	<parameter name="tanggalAkhir" class="java.util.Date"/>
@@ -144,48 +144,48 @@
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement positionType="Float" x="0" y="0" width="48" height="20" uuid="1786a597-de06-4fa8-a10c-9581c926cb31"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="48" height="20" uuid="1786a597-de06-4fa8-a10c-9581c926cb31"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="48" y="0" width="97" height="20" uuid="e05a0c3a-8b71-49bb-8ec5-4db3e125e00a"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="48" y="0" width="97" height="20" uuid="e05a0c3a-8b71-49bb-8ec5-4db3e125e00a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{transDate}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="145" y="0" width="91" height="20" uuid="8af5a09b-b06f-4349-91d3-3e6196350576"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="145" y="0" width="91" height="20" uuid="8af5a09b-b06f-4349-91d3-3e6196350576"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{delivDate}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="236" y="0" width="45" height="20" uuid="e2536e22-80c6-435d-baa0-8ebf5ec66200"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="236" y="0" width="45" height="20" uuid="e2536e22-80c6-435d-baa0-8ebf5ec66200"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="281" y="0" width="91" height="20" uuid="82e9ef58-4617-470f-b2b5-8bb942c3d85a"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="281" y="0" width="91" height="20" uuid="82e9ef58-4617-470f-b2b5-8bb942c3d85a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{barang}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="372" y="0" width="114" height="20" uuid="d805db0e-ddbf-4360-9e2d-b3fb2b77456e"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="372" y="0" width="114" height="20" uuid="d805db0e-ddbf-4360-9e2d-b3fb2b77456e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{custName}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="486" y="0" width="138" height="20" uuid="b588e698-f55e-4212-9f97-3225f54fe053"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="486" y="0" width="138" height="20" uuid="b588e698-f55e-4212-9f97-3225f54fe053"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{custAddress}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="624" y="0" width="90" height="20" uuid="a91325c6-1e1b-4ce1-b191-200c65cecd40"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="624" y="0" width="90" height="20" uuid="a91325c6-1e1b-4ce1-b191-200c65cecd40"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{custPhone}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="714" y="0" width="88" height="20" uuid="31e73ca6-8957-4e7e-8f6a-34ac2d8c0602"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="714" y="0" width="88" height="20" uuid="31e73ca6-8957-4e7e-8f6a-34ac2d8c0602"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
