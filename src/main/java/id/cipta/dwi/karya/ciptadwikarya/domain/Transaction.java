@@ -32,15 +32,15 @@ public class Transaction {
     private int quantity;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user", referencedColumnName = "")
-    private Users id;
+    @JoinColumn(name = "id_user")
+    private Users idUser;
     
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_inventory", referencedColumnName = "")
+    @JoinColumn(name = "id_inventory")
     private Inventory idInventory;
     
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_customer", referencedColumnName = "")
+    @JoinColumn(name = "id_customer")
     private Customers idCustomer;
     
     @Column(name = "note")
@@ -78,12 +78,12 @@ public class Transaction {
         this.quantity = quantity;
     }
 
-    public Users getId() {
-        return id;
+    public Users getIdUser() {
+        return idUser;
     }
 
-    public void setId(Users id) {
-        this.id = id;
+    public void setIdUser(Users idUser) {
+        this.idUser = idUser;
     }
 
     public Inventory getIdInventory() {
@@ -112,7 +112,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", quantity=" + quantity + ", id=" + id + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", note=" + note + '}';
+        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", quantity=" + quantity + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", note=" + note + '}';
     }
 
     
