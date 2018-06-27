@@ -33,7 +33,7 @@ public class ReportController {
     @Autowired
     private TransactionService transactionService;
 
-    @RequestMapping(value = "/customers")
+    @RequestMapping(value = "/menu")
     public String ReportAction() {
         return "laporan";
     }

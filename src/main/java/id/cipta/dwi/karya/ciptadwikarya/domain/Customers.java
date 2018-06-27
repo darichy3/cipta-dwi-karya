@@ -27,7 +27,7 @@ public class Customers {
     private String phone;
     
     @Column(name = "created_date")
-    private Date createdDate;
+    private String createdDate;
     
     @Column(name = "created_by")
     private String createdBy;
@@ -64,11 +64,11 @@ public class Customers {
         this.phone = phone;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 

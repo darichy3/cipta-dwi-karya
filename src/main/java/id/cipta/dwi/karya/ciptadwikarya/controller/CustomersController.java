@@ -5,6 +5,8 @@ import id.cipta.dwi.karya.ciptadwikarya.form.FormCustomers;
 import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
 import id.cipta.dwi.karya.ciptadwikarya.service.CustomersService;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -49,10 +51,15 @@ public class CustomersController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUser = authentication.getName();
         
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        logger.info("Date to day: " + dtf.format(now));
+        
         Customers customers = new Customers();
         customers.setName(formCustomers.getName());
         customers.setAddress(formCustomers.getAddress());
         customers.setPhone(formCustomers.getPhone());
+        customers.setCreatedDate(dtf.format(now));
         customers.setCreatedBy(loginUser);
         
         customersService.saveCustomer(customers);

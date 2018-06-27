@@ -127,3 +127,7 @@ nav ul ul li a:hover {
     position: absolute;
     top: -9999px;
 }
+
+.form-control {
+    width: 400px;
+}
