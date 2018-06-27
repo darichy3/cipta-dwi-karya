@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 24 Jun 2018 pada 10.50
--- Versi Server: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Waktu pembuatan: 27 Jun 2018 pada 08.23
+-- Versi server: 10.1.32-MariaDB
+-- Versi PHP: 5.6.36
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,9 +85,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_roles`, `role`, `id_user`) VALUES
-(1, 'ADMIN', 0),
-(2, 'ADMIN', 0),
-(3, 'ADMIN', 10);
+(1, 'ROLE_ADMIN', 1),
+(2, 'ROLE_ADMIN', 2),
+(3, 'ROLE_ADMIN', 10);
 
 -- --------------------------------------------------------
 
@@ -97,11 +97,11 @@ INSERT INTO `roles` (`id_roles`, `role`, `id_user`) VALUES
 
 CREATE TABLE `transaction` (
   `id_transaction` int(10) NOT NULL,
-  `transaction_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `transaction_date` date NOT NULL,
   `delivery_date` date NOT NULL,
   `quantity` int(10) NOT NULL,
   `id_user` int(10) NOT NULL,
-  `id_barang` int(5) NOT NULL,
+  `id_inventory` int(10) NOT NULL,
   `id_customer` int(10) NOT NULL,
   `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -110,8 +110,9 @@ CREATE TABLE `transaction` (
 -- Dumping data untuk tabel `transaction`
 --
 
-INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_barang`, `id_customer`, `note`) VALUES
-(1, '2018-06-22 17:00:00', '0000-00-00', 5, 2, 1, 1, '');
+INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_inventory`, `id_customer`, `note`) VALUES
+(1, '2018-06-23', '0000-00-00', 5, 2, 1, 1, ''),
+(2, '2018-06-27', '2018-06-06', 1, 2, 1, 1, 'salalakdiahfoiha');
 
 -- --------------------------------------------------------
 
@@ -133,77 +134,76 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `username`, `name`, `password`, `enable`) VALUES
 (1, 'admin', 'Admin', 'admin123', 1),
-(2, 'darichy', 'darichy', '123456', 1),
-(10, 'sdfg', 'vcbn', 'fdh', 1);
+(2, 'darichy', 'darichy', '123456', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `customers`
+-- Indeks untuk tabel `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id_customer`);
 
 --
--- Indexes for table `inventory`
+-- Indeks untuk tabel `inventory`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`id_inventory`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_roles`);
 
 --
--- Indexes for table `transaction`
+-- Indeks untuk tabel `transaction`
 --
 ALTER TABLE `transaction`
   ADD PRIMARY KEY (`id_transaction`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT untuk tabel `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `inventory`
+-- AUTO_INCREMENT untuk tabel `inventory`
 --
 ALTER TABLE `inventory`
   MODIFY `id_inventory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `transaction`
+-- AUTO_INCREMENT untuk tabel `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
