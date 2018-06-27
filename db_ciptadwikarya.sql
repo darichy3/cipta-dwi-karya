@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Jun 2018 pada 08.23
+-- Waktu pembuatan: 27 Jun 2018 pada 15.25
 -- Versi server: 10.1.32-MariaDB
 -- Versi PHP: 5.6.36
 
@@ -112,7 +112,8 @@ CREATE TABLE `transaction` (
 
 INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_inventory`, `id_customer`, `note`) VALUES
 (1, '2018-06-23', '0000-00-00', 5, 2, 1, 1, ''),
-(2, '2018-06-27', '2018-06-06', 1, 2, 1, 1, 'salalakdiahfoiha');
+(2, '2018-06-27', '2018-06-29', 1, 2, 1, 1, 'salalakdiahfoiha'),
+(3, '2018-06-27', '2018-06-28', 5, 1, 1, 2, 'buku tulis');
 
 -- --------------------------------------------------------
 
@@ -197,7 +198,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
