@@ -7,7 +7,7 @@ public class FormSafeConduct {
     private Date delivDate;
     private int quantity;
     private String admin;
-    private String Barang;
+    private String barang;
     private String custName;
     private String custAddress;
     private String custPhone;
@@ -46,11 +46,11 @@ public class FormSafeConduct {
     }
 
     public String getBarang() {
-        return Barang;
+        return barang;
     }
 
-    public void setBarang(String Barang) {
-        this.Barang = Barang;
+    public void setBarang(String barang) {
+        this.barang = barang;
     }
 
     public String getCustName() {
@@ -84,4 +84,10 @@ public class FormSafeConduct {
     public void setNote(String note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + '}';
+    }
+    
 }

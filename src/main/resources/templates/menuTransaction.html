@@ -38,7 +38,7 @@
                         <td th:text="${transaction.idCustomer.phone}">Cell 9</td>
                         <td th:text="${transaction.note}">Cell 10</td>
                         <td>
-                            <a type="button" class="btn btn-primary" href="/transaction/print" th:href="@{/transaction/print/__${transaction.idInventory}__}">Safeconduct</a>
+                            <a type="button" class="btn btn-primary" href="/report/safeConduct" th:href="@{/report/safeConduct/__${transaction.idTransaction}__}" target="blank" >Safeconduct</a>
                             <a type="button" class="btn btn-primary" href="/transaction/edit" th:href="@{/transaction/edit/}+${transaction.idTransaction}">Edit</a>
                             <a type="button" class="btn btn-danger" href="/transaction/delete" th:href="@{/transaction/delete/__${transaction.idInventory}__}">Delete</a>
                         </td>

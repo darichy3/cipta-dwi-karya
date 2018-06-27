@@ -33,12 +33,16 @@ public class ReportSafeCondustController {
 
     @RequestMapping(value = "/safeConduct/{idTrans}", method = RequestMethod.GET)
     public ModelAndView viewReport(@PathVariable("idTrans") int idTrans) {
-
+        System.out.println("ID : "+idTrans);
+        
+        List<FormSafeConduct> conducts = new ArrayList();
+        conducts.add(dataTransaction(idTrans));
+        
         JasperReportsPdfView jPdf = new JasperReportsPdfView();
         jPdf.setUrl("classpath:report/reportSafeConduct.jrxml");
         jPdf.setApplicationContext(applicationContext);
         Map<String, Object> params = new HashMap();
-        params.put("datasource", dataTransaction(idTrans));
+        params.put("datasource", conducts);
         return new ModelAndView(jPdf, params);
     }
 
@@ -56,6 +60,8 @@ public class ReportSafeCondustController {
         formSafeConduct.setNote(transaction.getNote());
         formSafeConduct.setQuantity(transaction.getQuantity());
         formSafeConduct.setTransDate(parseToDate(transaction.getTransactionDate()));
+        
+        System.out.println(formSafeConduct.toString());
 
         return formSafeConduct;
     }
