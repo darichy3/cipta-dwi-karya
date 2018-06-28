@@ -43,6 +43,10 @@ public class Transaction {
     @JoinColumn(name = "id_customer")
     private Customers idCustomer;
     
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_status")
+    private Status idStatus;
+    
     @Column(name = "note")
     private String note;
 
@@ -102,6 +106,14 @@ public class Transaction {
         this.idCustomer = idCustomer;
     }
 
+    public Status getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(Status idStatus) {
+        this.idStatus = idStatus;
+    }
+
     public String getNote() {
         return note;
     }
@@ -112,11 +124,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", quantity=" + quantity + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", note=" + note + '}';
+        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", quantity=" + quantity + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", idStatus=" + idStatus + ", note=" + note + '}';
     }
-
-    
-
-   
     
 }

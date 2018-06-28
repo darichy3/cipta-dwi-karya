@@ -1,12 +1,19 @@
 package id.cipta.dwi.karya.ciptadwikarya.service;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
+import id.cipta.dwi.karya.ciptadwikarya.form.FormTransaction;
+import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.StatusRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +25,9 @@ public class TransactionServiceImpl implements TransactionService{
     
     @Autowired
     private TransactionRepository repository;
+
+    @Autowired
+    private UsersRepository userRepository;
    
     @Override
     @Transactional
@@ -39,17 +49,22 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public Transaction updateTransaction(@Valid @ModelAttribute("transactions") Transaction transactions) {
-        logger.info("Result transaction: "+transactions.toString());
-//        if(transactions != null){
-//            Transaction transactionDb = repository.findByIdTransaction(transactions.getIdTransaction());
-//            transactionDb.setName(transactions.getName());
-//            transactionDb.setSumIn(transactions.getSumIn());
-//            transactionDb.setSumOut(0);
-//            transactionDb.setSumEnd(0);
-//            transactionDb.setNote(transactions.getNote());
-//            repository.save(transactionDb);
-//            logger.info(transactionDb.toString());        
-//        }        
+        logger.info("Form: "+transactions.toString());
+        if(transactions != null){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String loginUser = authentication.getName();
+            
+            Transaction transactionDb = repository.findByIdTransaction(transactions.getIdTransaction());
+            transactionDb.setDeliveryDate(transactions.getDeliveryDate());
+            transactionDb.setQuantity(transactions.getQuantity());
+            transactionDb.setIdUser(userRepository.findByName(loginUser));
+            transactionDb.setIdInventory(transactions.getIdInventory());
+            transactionDb.setIdCustomer(transactions.getIdCustomer());
+            transactionDb.setIdStatus(transactions.getIdStatus());
+            transactionDb.setNote(transactions.getNote());
+            repository.save(transactionDb); 
+            logger.info("DB: "+transactionDb.toString());  
+        }        
         return transactions;   
     }
 

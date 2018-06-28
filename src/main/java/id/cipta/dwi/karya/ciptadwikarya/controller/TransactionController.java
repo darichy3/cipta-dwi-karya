@@ -7,6 +7,7 @@ import id.cipta.dwi.karya.ciptadwikarya.domain.Users;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormTransaction;
 import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.StatusRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
@@ -48,6 +49,9 @@ public class TransactionController {
 
     @Autowired
     private UsersRepository userRepository;
+    
+    @Autowired
+    private StatusRepository statusRepository;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String GetAddAction(FormTransaction formTransaction, Model model, Customers customer, Inventory inventory) {
@@ -74,6 +78,7 @@ public class TransactionController {
             transaction.setIdUser(userRepository.findByName(loginUser));
             transaction.setIdCustomer(customerRepository.findByIdCustomer(formTransaction.getIdCustomer()));
             transaction.setIdInventory(inventoryRepository.findByIdInventory(formTransaction.getIdInventory()));
+            transaction.setIdStatus(statusRepository.findByIdStatus(1));
             transaction.setNote(formTransaction.getNote());
 
             transactionService.saveTransaction(transaction);
@@ -106,6 +111,7 @@ public class TransactionController {
         
         model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("inventories", inventoryRepository.findAll());
+        model.addAttribute("statuses", statusRepository.findAll());
         model.addAttribute("transactions", transaction);
 
         return "editTransaction";
@@ -119,7 +125,7 @@ public class TransactionController {
         try {
             Users users = userRepository.findByUsername(loginName);
             transactions.setIdUser(users);
-            transactionService.saveTransaction(transactions);
+            transactionService.updateTransaction(transactions);
         } catch (Exception e) {
             e.printStackTrace();
         }

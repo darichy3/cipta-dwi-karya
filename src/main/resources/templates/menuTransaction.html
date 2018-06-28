@@ -15,6 +15,7 @@
                         <th>NO</th>
                         <th>Transaction Date</th>
                         <th>Delivery Date</th>
+                        <th>Status</th>
                         <th>Quantity</th>
                         <th>Admin</th>
                         <th>Barang</th>
@@ -30,13 +31,14 @@
                         <td th:text="${stat.index}+1">Cell 1</td>
                         <td th:text="${transaction.transactionDate}">Cell 2</td>
                         <td th:text="${transaction.deliveryDate}">Cell 3</td>
-                        <td th:text="${transaction.quantity}">Cell 4</td>
-                        <td th:text="${transaction.idUser.name}">Cell 5</td>
-                        <td th:text="${transaction.idInventory.name}">Cell 6</td>
-                        <td th:text="${transaction.idCustomer.name}">Cell 7</td>
-                        <td th:text="${transaction.idCustomer.address}">Cell 8</td>
-                        <td th:text="${transaction.idCustomer.phone}">Cell 9</td>
-                        <td th:text="${transaction.note}">Cell 10</td>
+                        <td th:text="${transaction.idStatus.name}">Cell 4</td>
+                        <td th:text="${transaction.quantity}">Cell 5</td>
+                        <td th:text="${transaction.idUser.name}">Cell 6</td>
+                        <td th:text="${transaction.idInventory.name}">Cell 7</td>
+                        <td th:text="${transaction.idCustomer.name}">Cell 8</td>
+                        <td th:text="${transaction.idCustomer.address}">Cell 9</td>
+                        <td th:text="${transaction.idCustomer.phone}">Cell 10</td>
+                        <td th:text="${transaction.note}">Cell 11</td>
                         <td>
                             <a type="button" class="btn btn-primary" href="/report/safeConduct" th:href="@{/report/safeConduct/__${transaction.idTransaction}__}" target="blank" >Safeconduct</a>
                             <a type="button" class="btn btn-primary" href="/transaction/edit" th:href="@{/transaction/edit/}+${transaction.idTransaction}">Edit</a>
