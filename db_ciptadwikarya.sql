@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Jun 2018 pada 15.25
--- Versi server: 10.1.32-MariaDB
--- Versi PHP: 5.6.36
+-- Generation Time: 28 Jun 2018 pada 02.37
+-- Versi Server: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,7 +33,7 @@ CREATE TABLE `customers` (
   `name` varchar(30) NOT NULL,
   `address` varchar(255) NOT NULL,
   `phone` bigint(13) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` date NOT NULL,
   `created_by` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -42,8 +42,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id_customer`, `name`, `address`, `phone`, `created_date`, `created_by`) VALUES
-(1, 'Paijo', 'Kemang, Jl. Kemang Barat No. 15', 628567891111, '2018-06-23 01:29:38', 'darichy'),
-(2, 'DHANAN DWI RIZKI', 'Jl. Musyawarah No. 5A, Rt. 008/Rw. 01,Kel. Ragunan, Kec. Pasar Minggu', 6282211225992, '2018-06-24 02:39:06', 'admin');
+(1, 'Paijo', 'Kemang, Jl. Kemang Barat No. 15', 628567891111, '2018-06-23', 'darichy'),
+(2, 'Darichy', 'Jl. Musyawarah No. 5A, Rt. 008/Rw. 01,Kel. Ragunan, Kec. Pasar Minggu', 6282211225992, '2018-06-24', 'Darichy'),
+(3, 'Oejho', 'Jl. Kampung Utan No. 30', 628123456789, '2018-06-24', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,8 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id_inventory`, `name`, `sum_in`, `sum_out`, `sum_end`, `date_in`, `note`) VALUES
-(1, 'Buku', 10, 0, 10, '2018-06-23 01:13:41', 'BUku tulis @pack');
+(1, 'Buku', 10, 0, 10, '2018-06-23 01:13:41', 'BUku tulis @pack'),
+(2, 'Meja', 100, 0, 0, '2018-06-27 22:43:26', 'Meja lipat @unit');
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,30 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id_roles`, `role`, `id_user`) VALUES
 (1, 'ROLE_ADMIN', 1),
 (2, 'ROLE_ADMIN', 2),
-(3, 'ROLE_ADMIN', 10);
+(3, 'ROLE_ADMIN', 10),
+(4, 'ROLE_ADMIN', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `note` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `status`
+--
+
+INSERT INTO `status` (`id`, `name`, `note`) VALUES
+(1, 'Open Order', 'Ketika create transaksi'),
+(2, 'Process Order', 'Ketika sedang dalam persiapan pengiriman'),
+(3, 'Delivered', 'Ketika pengiriman sudah di proses'),
+(4, 'Close Order', 'Ketika Transaksi sudah slesai');
 
 -- --------------------------------------------------------
 
@@ -101,8 +126,9 @@ CREATE TABLE `transaction` (
   `delivery_date` date NOT NULL,
   `quantity` int(10) NOT NULL,
   `id_user` int(10) NOT NULL,
-  `id_inventory` int(10) NOT NULL,
+  `id_inventory` int(5) NOT NULL,
   `id_customer` int(10) NOT NULL,
+  `id_status` int(5) NOT NULL,
   `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -110,10 +136,11 @@ CREATE TABLE `transaction` (
 -- Dumping data untuk tabel `transaction`
 --
 
-INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_inventory`, `id_customer`, `note`) VALUES
-(1, '2018-06-23', '0000-00-00', 5, 2, 1, 1, ''),
-(2, '2018-06-27', '2018-06-29', 1, 2, 1, 1, 'salalakdiahfoiha'),
-(3, '2018-06-27', '2018-06-28', 5, 1, 1, 2, 'buku tulis');
+INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_inventory`, `id_customer`, `id_status`, `note`) VALUES
+(1, '2018-06-23', '0000-00-00', 5, 2, 1, 1, 1, ''),
+(2, '2018-06-28', '2018-06-13', 13, 2, 1, 3, 2, 'coba input'),
+(3, '2018-06-28', '2018-06-29', 50, 2, 1, 1, 3, 'coba input'),
+(4, '2018-06-28', '2018-06-30', 10, 2, 2, 2, 1, 'Pesan meja lipat bergambar');
 
 -- --------------------------------------------------------
 
@@ -134,77 +161,90 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `name`, `password`, `enable`) VALUES
-(1, 'admin', 'Admin', 'admin123', 1),
-(2, 'darichy', 'darichy', '123456', 1);
+(1, 'admin', 'Admin', 'admin', 1),
+(2, 'darichy', 'darichy', '123456', 1),
+(12, 'yus', 'yus aja', 'subakti', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `customers`
+-- Indexes for table `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id_customer`);
 
 --
--- Indeks untuk tabel `inventory`
+-- Indexes for table `inventory`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`id_inventory`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_roles`);
 
 --
--- Indeks untuk tabel `transaction`
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transaction`
 --
 ALTER TABLE `transaction`
   ADD PRIMARY KEY (`id_transaction`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `customers`
+-- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `inventory`
+-- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id_inventory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_inventory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `transaction`
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_transaction` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
