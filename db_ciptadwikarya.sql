@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28 Jun 2018 pada 02.37
+-- Generation Time: 28 Jun 2018 pada 14.59
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -42,8 +42,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id_customer`, `name`, `address`, `phone`, `created_date`, `created_by`) VALUES
-(1, 'Paijo', 'Kemang, Jl. Kemang Barat No. 15', 628567891111, '2018-06-23', 'darichy'),
-(2, 'Darichy', 'Jl. Musyawarah No. 5A, Rt. 008/Rw. 01,Kel. Ragunan, Kec. Pasar Minggu', 6282211225992, '2018-06-24', 'Darichy'),
+(1, 'Paijo', 'Kemang, Jl. Kemang Barat No. 150', 628567891111, '2018-06-23', 'darichy'),
+(2, 'Darichy', 'Jl. Musyawarah No. 5A, Rt. 008/Rw. 01,Kel. Ragunan, Kec. Pasar Minggu', 6282212345678, '2018-06-24', 'darichy'),
 (3, 'Oejho', 'Jl. Kampung Utan No. 30', 628123456789, '2018-06-24', 'Admin');
 
 -- --------------------------------------------------------
@@ -99,7 +99,7 @@ INSERT INTO `roles` (`id_roles`, `role`, `id_user`) VALUES
 --
 
 CREATE TABLE `status` (
-  `id` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `note` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -108,7 +108,7 @@ CREATE TABLE `status` (
 -- Dumping data untuk tabel `status`
 --
 
-INSERT INTO `status` (`id`, `name`, `note`) VALUES
+INSERT INTO `status` (`id_status`, `name`, `note`) VALUES
 (1, 'Open Order', 'Ketika create transaksi'),
 (2, 'Process Order', 'Ketika sedang dalam persiapan pengiriman'),
 (3, 'Delivered', 'Ketika pengiriman sudah di proses'),
@@ -137,9 +137,9 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id_transaction`, `transaction_date`, `delivery_date`, `quantity`, `id_user`, `id_inventory`, `id_customer`, `id_status`, `note`) VALUES
-(1, '2018-06-23', '0000-00-00', 5, 2, 1, 1, 1, ''),
-(2, '2018-06-28', '2018-06-13', 13, 2, 1, 3, 2, 'coba input'),
-(3, '2018-06-28', '2018-06-29', 50, 2, 1, 1, 3, 'coba input'),
+(1, '2018-06-23', '2018-06-30', 5, 2, 1, 1, 1, 'coba 1'),
+(2, '2018-06-28', '2018-06-29', 13, 2, 1, 3, 2, 'Order untuk keperluan sd'),
+(3, '2018-06-28', '2018-06-28', 50, 2, 1, 1, 3, 'coba input'),
 (4, '2018-06-28', '2018-06-30', 10, 2, 2, 2, 1, 'Pesan meja lipat bergambar');
 
 -- --------------------------------------------------------
@@ -191,7 +191,7 @@ ALTER TABLE `roles`
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_status`);
 
 --
 -- Indexes for table `transaction`
@@ -232,7 +232,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaction`
