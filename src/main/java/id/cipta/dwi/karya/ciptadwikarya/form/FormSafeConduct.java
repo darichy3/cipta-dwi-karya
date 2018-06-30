@@ -12,6 +12,15 @@ public class FormSafeConduct {
     private String custAddress;
     private String custPhone;
     private String note;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Date getTransDate() {
         return transDate;

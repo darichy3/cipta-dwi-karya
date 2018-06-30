@@ -72,5 +72,10 @@ public class UsersServiceImpl implements UsersService{
         }        
         return users;        
     }
+
+    @Override
+    public Users findByUsername(String username) {
+        return repository.findByUsername(username);
+    }
     
 }

@@ -14,6 +14,7 @@
 	<field name="custPhone" class="java.lang.String"/>
 	<field name="note" class="java.lang.String"/>
 	<field name="transDate" class="java.util.Date"/>
+	<field name="status" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -79,7 +80,7 @@
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="48" height="20" uuid="95fdd1f6-3417-497f-a7a0-204a7711216b"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="32" height="20" uuid="95fdd1f6-3417-497f-a7a0-204a7711216b"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -89,7 +90,7 @@
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="48" y="0" width="97" height="20" uuid="1f788157-fd1c-42ca-a3a8-80b352af324a"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="32" y="0" width="77" height="20" uuid="1f788157-fd1c-42ca-a3a8-80b352af324a"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -99,7 +100,7 @@
 				<text><![CDATA[Trans Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="145" y="0" width="91" height="20" uuid="c6f25578-a898-458e-8fff-1885138cc692"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="109" y="0" width="71" height="20" uuid="c6f25578-a898-458e-8fff-1885138cc692"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -109,7 +110,7 @@
 				<text><![CDATA[Delive  Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="236" y="0" width="45" height="20" uuid="2dfaf843-a345-4a78-988b-9b3b578c305f"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="249" y="0" width="32" height="20" uuid="2dfaf843-a345-4a78-988b-9b3b578c305f"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -168,27 +169,37 @@
 				</textElement>
 				<text><![CDATA[Note]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="69" height="20" uuid="b6273f94-c182-4817-85b6-878961fe78cb"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="48" height="20" uuid="1786a597-de06-4fa8-a10c-9581c926cb31"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="32" height="20" uuid="1786a597-de06-4fa8-a10c-9581c926cb31"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="48" y="0" width="97" height="20" uuid="e05a0c3a-8b71-49bb-8ec5-4db3e125e00a"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="32" y="0" width="77" height="20" uuid="e05a0c3a-8b71-49bb-8ec5-4db3e125e00a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{transDate}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="145" y="0" width="91" height="20" uuid="8af5a09b-b06f-4349-91d3-3e6196350576"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="109" y="0" width="71" height="20" uuid="8af5a09b-b06f-4349-91d3-3e6196350576"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{delivDate}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="236" y="0" width="45" height="20" uuid="e2536e22-80c6-435d-baa0-8ebf5ec66200"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="249" y="0" width="32" height="20" uuid="e2536e22-80c6-435d-baa0-8ebf5ec66200"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
@@ -216,6 +227,13 @@
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="714" y="0" width="88" height="20" uuid="31e73ca6-8957-4e7e-8f6a-34ac2d8c0602"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="69" height="20" uuid="a34e6ec3-5bae-445a-8abd-bf53539b5bb1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

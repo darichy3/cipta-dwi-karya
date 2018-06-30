@@ -2,9 +2,11 @@ package id.cipta.dwi.karya.ciptadwikarya.controller;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Customers;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Users;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormSafeConduct;
 import id.cipta.dwi.karya.ciptadwikarya.service.CustomersReportService;
 import id.cipta.dwi.karya.ciptadwikarya.service.TransactionService;
+import id.cipta.dwi.karya.ciptadwikarya.service.UsersService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +16,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +34,15 @@ public class ReportSafeCondustController {
 
     @Autowired
     private TransactionService transactionService;
+    
+    @Autowired
+    private UsersService usersService;
 
     @RequestMapping(value = "/safeConduct/{idTrans}", method = RequestMethod.GET)
     public ModelAndView viewReport(@PathVariable("idTrans") int idTrans) {
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users users = usersService.findByUsername(auth.getName());
         
         List<FormSafeConduct> conducts = new ArrayList();
         conducts.add(dataTransaction(idTrans));
@@ -41,6 +51,7 @@ public class ReportSafeCondustController {
         jPdf.setUrl("classpath:report/reportSafeConduct.jrxml");
         jPdf.setApplicationContext(applicationContext);
         Map<String, Object> params = new HashMap();
+        params.put("userName", users.getName());
         params.put("datasource", conducts);
         return new ModelAndView(jPdf, params);
     }

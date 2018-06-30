@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView;
 
 @Controller
 @RequestMapping("/report")
@@ -84,6 +85,7 @@ public class ReportController {
             formSafeConduct.setNote(transaction.getNote());
             formSafeConduct.setQuantity(transaction.getQuantity());
             formSafeConduct.setTransDate(parseToDate(transaction.getTransactionDate()));
+            formSafeConduct.setStatus(transaction.getIdStatus().getName());
             listForms.add(formSafeConduct);
         }
 
