@@ -39,6 +39,8 @@ public class InventoryController {
         
         Inventory inventory = new Inventory();
         inventory.setName(formInventory.getName());
+        inventory.setPriceBuy(formInventory.getPriceBuy());
+        inventory.setPriceSell(formInventory.getPriceSell());
         inventory.setSumIn(formInventory.getSumIn());
         inventory.setSumOut(0);
         inventory.setSumEnd(0);
@@ -73,8 +75,10 @@ public class InventoryController {
     public String PostEditAction(Model model, @Valid @ModelAttribute("inventories") Inventory inventories, FormInventory formInventory) {
         
         inventories.setName(formInventory.getName());
+        inventories.setPriceBuy(formInventory.getPriceBuy());
+        inventories.setPriceSell(formInventory.getPriceSell());
         inventories.setSumIn(formInventory.getSumIn());
-        inventories.setNote(formInventory.getName());
+        inventories.setNote(formInventory.getNote());
         
         inventoryService.updateInventory(inventories);
         logger.info(formInventory.toString());

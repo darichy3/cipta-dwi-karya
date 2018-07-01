@@ -1,5 +1,6 @@
 package id.cipta.dwi.karya.ciptadwikarya.service;
 
+import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormTransaction;
 import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
@@ -28,6 +29,9 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Autowired
     private UsersRepository userRepository;
+    
+    @Autowired
+    private InventoryRepository inventoryRepository;
    
     @Override
     @Transactional
@@ -42,7 +46,14 @@ public class TransactionServiceImpl implements TransactionService{
                 transaction = repository.save(transaction);
             }
             logger.info(transaction.toString());
-                   
+            
+            if(transaction != null){
+            Inventory inventory = inventoryRepository.findOne(transaction.getIdInventory().getIdInventory());
+            inventory.setSumOut(transaction.getQuantity());
+            inventory.setSumEnd(inventory.getSumIn()-transaction.getIdInventory().getSumOut());
+            inventory = inventoryRepository.save(inventory);
+            logger.info(inventory.toString());
+            }       
         }        
         return transaction;        
     }
@@ -63,7 +74,14 @@ public class TransactionServiceImpl implements TransactionService{
             transactionDb.setIdStatus(transactions.getIdStatus());
             transactionDb.setNote(transactions.getNote());
             repository.save(transactionDb); 
-            logger.info("DB: "+transactionDb.toString());  
+            logger.info("DB: "+transactionDb.toString()); 
+            
+            if(transactionDb != null){
+            Inventory inventory = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory());
+            inventory.setSumOut(transactionDb.getQuantity());
+            inventory.setSumEnd(inventory.getSumIn()-transactionDb.getIdInventory().getSumOut());
+            inventory = inventoryRepository.save(inventory);
+            }
         }        
         return transactions;   
     }

@@ -14,6 +14,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Harga Beli</th>
+                        <th>Harga Jual</th>
                         <th>Sum In</th>
                         <th>Sum Out</th>
                         <th>Sum End</th>
@@ -26,11 +28,13 @@
                     <tr th:each="inventory,stat : ${inventories}">
                         <td th:text="${stat.index}+1">Cell 1</td>
                         <td th:text="${inventory.name}">Cell 2</td>
-                        <td th:text="${inventory.sumIn}">Cell 3</td>
-                        <td th:text="${inventory.sumOut}">Cell 4</td>
-                        <td th:text="${inventory.sumEnd}">Cell 5</td>
-                        <td th:text="${inventory.dateIn}">Cell 6</td>
-                        <td th:text="${inventory.note}">Cell 7</td>
+                        <td th:text="${inventory.priceBuy}">Cell 3</td>
+                        <td th:text="${inventory.priceSell}">Cell 4</td>
+                        <td th:text="${inventory.sumIn}">Cell 5</td>
+                        <td th:text="${inventory.sumOut}">Cell 6</td>
+                        <td th:text="${inventory.sumEnd}">Cell 7</td>
+                        <td th:text="${inventory.dateIn}">Cell 8</td>
+                        <td th:text="${inventory.note}">Cell 9</td>
                         <td>
                             <a type="button" class="btn btn-primary" href="/inventory/edit" th:href="@{/inventory/edit/__${inventory.idInventory}__}">Edit</a>
                             <a type="button" class="btn btn-danger" href="/inventory/delete" th:href="@{/inventory/delete/__${inventory.idInventory}__}">Delete</a>

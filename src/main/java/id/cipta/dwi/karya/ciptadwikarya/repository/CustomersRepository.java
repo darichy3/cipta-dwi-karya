@@ -13,6 +13,6 @@ public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     
     Customers findByIdCustomer(Integer idCustomer);
     
-    List<Customers> findByCreatedDateBetween(Date tglAwal, Date tglAkhir);
+    List<Customers> findByCreatedDateBetween(String tglAwal, String tglAkhir);
     
 }

@@ -20,6 +20,12 @@ public class Inventory {
     @Column(name = "name")
     private String name;
     
+    @Column(name = "price_buy")
+    private int priceBuy;
+    
+    @Column(name = "price_sell")
+    private int priceSell;
+    
     @Column(name = "sum_in")
     private int sumIn;
     
@@ -51,6 +57,22 @@ public class Inventory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPriceBuy() {
+        return priceBuy;
+    }
+
+    public void setPriceBuy(int priceBuy) {
+        this.priceBuy = priceBuy;
+    }
+
+    public int getPriceSell() {
+        return priceSell;
+    }
+
+    public void setPriceSell(int priceSell) {
+        this.priceSell = priceSell;
     }
 
     public int getSumIn() {
@@ -95,8 +117,6 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" + "idInventory=" + idInventory + ", name=" + name + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", dateIn=" + dateIn + ", note=" + note + '}';
+        return "Inventory{" + "idInventory=" + idInventory + ", name=" + name + ", priceBuy=" + priceBuy + ", priceSell=" + priceSell + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", dateIn=" + dateIn + ", note=" + note + '}';
     }
-   
-    
 }

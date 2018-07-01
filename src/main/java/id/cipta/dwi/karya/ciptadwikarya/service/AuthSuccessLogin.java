@@ -25,8 +25,6 @@ public class AuthSuccessLogin implements ApplicationListener<AuthenticationSucce
         
         HttpSession session = holder.getSession();
         
-        System.out.println("Tes : "+loginName);
-        
         session.setAttribute("loginId", users.getIdUser());
         session.setAttribute("userName", loginName);
     }

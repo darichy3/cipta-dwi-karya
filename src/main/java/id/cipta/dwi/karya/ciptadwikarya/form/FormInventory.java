@@ -2,6 +2,8 @@ package id.cipta.dwi.karya.ciptadwikarya.form;
 
 public class FormInventory {
     private String name;
+    private int priceBuy;
+    private int priceSell;
     private int sumIn;
     private int sumOut;
     private int sumEnd;
@@ -13,6 +15,22 @@ public class FormInventory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPriceBuy() {
+        return priceBuy;
+    }
+
+    public void setPriceBuy(int priceBuy) {
+        this.priceBuy = priceBuy;
+    }
+
+    public int getPriceSell() {
+        return priceSell;
+    }
+
+    public void setPriceSell(int priceSell) {
+        this.priceSell = priceSell;
     }
 
     public int getSumIn() {
@@ -49,8 +67,6 @@ public class FormInventory {
 
     @Override
     public String toString() {
-        return "FormInventory{" + "name=" + name + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", note=" + note + '}';
+        return "FormInventory{" + "name=" + name + ", priceBuy=" + priceBuy + ", priceSell=" + priceSell + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", note=" + note + '}';
     }
-   
-    
 }

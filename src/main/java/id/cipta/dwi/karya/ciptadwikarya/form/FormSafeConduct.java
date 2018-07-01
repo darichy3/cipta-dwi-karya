@@ -13,6 +13,9 @@ public class FormSafeConduct {
     private String custPhone;
     private String note;
     private String status;
+    private int priceSell;
+    private int totalPrice;
+    private int totalSales;
 
     public String getStatus() {
         return status;
@@ -94,9 +97,32 @@ public class FormSafeConduct {
         this.note = note;
     }
 
+    public int getPriceSell() {
+        return priceSell;
+    }
+
+    public void setPriceSell(int priceSell) {
+        this.priceSell = priceSell;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public int getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(int totalSales) {
+        this.totalSales = totalSales;
+    }
+
     @Override
     public String toString() {
-        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + '}';
+        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + ", status=" + status + ", priceSell=" + priceSell + ", totalPrice=" + totalPrice + ", totalSales=" + totalSales + '}';
     }
-    
 }

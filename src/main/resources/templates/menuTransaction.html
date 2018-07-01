@@ -19,6 +19,7 @@
                         <th>Quantity</th>
                         <th>Admin</th>
                         <th>Barang</th>
+                        <th>Harga</th>
                         <th>Customer Name</th>
                         <th>Customer Address</th>
                         <th>Customer Phone</th>
@@ -35,10 +36,11 @@
                         <td th:text="${transaction.quantity}">Cell 5</td>
                         <td th:text="${transaction.idUser.name}">Cell 6</td>
                         <td th:text="${transaction.idInventory.name}">Cell 7</td>
-                        <td th:text="${transaction.idCustomer.name}">Cell 8</td>
-                        <td th:text="${transaction.idCustomer.address}">Cell 9</td>
-                        <td th:text="${transaction.idCustomer.phone}">Cell 10</td>
-                        <td th:text="${transaction.note}">Cell 11</td>
+                        <td th:text="${transaction.idInventory.priceSell}">Cell 8</td>
+                        <td th:text="${transaction.idCustomer.name}">Cell 9</td>
+                        <td th:text="${transaction.idCustomer.address}">Cell 10</td>
+                        <td th:text="${transaction.idCustomer.phone}">Cell 11</td>
+                        <td th:text="${transaction.note}">Cell 13</td>
                         <td>
                             <a type="button" class="btn btn-primary" href="/report/safeConduct" th:href="@{/report/safeConduct/__${transaction.idTransaction}__}" target="blank" >Safeconduct</a>
                             <a type="button" class="btn btn-primary" href="/transaction/edit" th:href="@{/transaction/edit/}+${transaction.idTransaction}">Edit</a>

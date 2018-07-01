@@ -226,6 +226,26 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{userName}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="289" y="90" width="230" height="20" uuid="75961539-176b-4aa7-920c-41d35dbc8528"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[(................................................)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="28" width="230" height="20" uuid="90dc0986-4817-4708-aaff-3b6e0873cf0e"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Expedisi]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 </jasperReport>

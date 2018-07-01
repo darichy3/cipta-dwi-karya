@@ -73,9 +73,16 @@ public class ReportController {
         List<Transaction> listTrans = transactionService.findByTransactionDateBetween(tglAwal, tglAkhir);
 
         List<FormSafeConduct> listForms = new ArrayList();
+        
+        Integer totalSales = 0;
 
         for (Transaction transaction : listTrans) {
             FormSafeConduct formSafeConduct = new FormSafeConduct();
+            
+            Integer totalPrice = transaction.getQuantity()*transaction.getIdInventory().getPriceSell();
+            
+            totalSales = totalSales+totalPrice;
+            
             formSafeConduct.setAdmin(transaction.getIdUser().getName());
             formSafeConduct.setBarang(transaction.getIdInventory().getName());
             formSafeConduct.setCustAddress(transaction.getIdCustomer().getAddress());
@@ -86,6 +93,9 @@ public class ReportController {
             formSafeConduct.setQuantity(transaction.getQuantity());
             formSafeConduct.setTransDate(parseToDate(transaction.getTransactionDate()));
             formSafeConduct.setStatus(transaction.getIdStatus().getName());
+            formSafeConduct.setPriceSell(transaction.getIdInventory().getPriceSell());
+            formSafeConduct.setTotalPrice(totalPrice);
+            formSafeConduct.setTotalSales(totalSales);
             listForms.add(formSafeConduct);
         }
 
@@ -105,7 +115,7 @@ public class ReportController {
     }
 
     private List<Customers> dataCustomers(String tglAwal, String tglAkhir) {
-        return customersReportService.reportCustomer(parseToDate(tglAwal), parseToDate(tglAkhir));
+        return customersReportService.reportCustomer(tglAwal, tglAkhir);
     }
 
     private Date parseToDate(String tgl) {
