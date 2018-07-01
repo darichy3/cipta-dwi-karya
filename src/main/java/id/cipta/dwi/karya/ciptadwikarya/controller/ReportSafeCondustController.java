@@ -8,6 +8,8 @@ import id.cipta.dwi.karya.ciptadwikarya.service.CustomersReportService;
 import id.cipta.dwi.karya.ciptadwikarya.service.TransactionService;
 import id.cipta.dwi.karya.ciptadwikarya.service.UsersService;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -47,6 +49,9 @@ public class ReportSafeCondustController {
         List<FormSafeConduct> conducts = new ArrayList();
         conducts.add(dataTransaction(idTrans));
         
+        Transaction transaction = transactionService.findOne(idTrans);
+        transactionService.updateSuratJalan(transaction);
+        
         JasperReportsPdfView jPdf = new JasperReportsPdfView();
         jPdf.setUrl("classpath:report/reportSafeConduct.jrxml");
         jPdf.setApplicationContext(applicationContext);
@@ -59,8 +64,13 @@ public class ReportSafeCondustController {
     private FormSafeConduct dataTransaction(int id) {
 
         Transaction transaction = transactionService.findOne(id);
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Year : " + dtf.format(now));
 
         FormSafeConduct formSafeConduct = new FormSafeConduct();
+        
         formSafeConduct.setAdmin(transaction.getIdUser().getName());
         formSafeConduct.setBarang(transaction.getIdInventory().getName());
         formSafeConduct.setCustAddress(transaction.getIdCustomer().getAddress());
@@ -70,6 +80,7 @@ public class ReportSafeCondustController {
         formSafeConduct.setNote(transaction.getNote());
         formSafeConduct.setQuantity(transaction.getQuantity());
         formSafeConduct.setTransDate(parseToDate(transaction.getTransactionDate()));
+        formSafeConduct.setNoSuratJalan("SJ/0"+transaction.getIdTransaction()+"/"+dtf.format(now));
         
         System.out.println(formSafeConduct.toString());
 

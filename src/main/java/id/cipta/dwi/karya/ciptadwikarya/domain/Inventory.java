@@ -36,7 +36,7 @@ public class Inventory {
     private int sumEnd;
     
     @Column(name = "date_in")
-    private Date dateIn;
+    private String dateIn;
     
     @Column(name = "note")
     private String note;
@@ -99,11 +99,11 @@ public class Inventory {
         this.sumEnd = sumEnd;
     }
 
-    public Date getDateIn() {
+    public String getDateIn() {
         return dateIn;
     }
 
-    public void setDateIn(Date dateIn) {
+    public void setDateIn(String dateIn) {
         this.dateIn = dateIn;
     }
 

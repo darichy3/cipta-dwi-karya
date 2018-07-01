@@ -16,6 +16,8 @@ public class FormSafeConduct {
     private int priceSell;
     private int totalPrice;
     private int totalSales;
+    private String noSuratJalan;
+    private Date tglSuratJalan;
 
     public String getStatus() {
         return status;
@@ -121,8 +123,24 @@ public class FormSafeConduct {
         this.totalSales = totalSales;
     }
 
+    public String getNoSuratJalan() {
+        return noSuratJalan;
+    }
+
+    public void setNoSuratJalan(String noSuratJalan) {
+        this.noSuratJalan = noSuratJalan;
+    }
+
+    public Date getTglSuratJalan() {
+        return tglSuratJalan;
+    }
+
+    public void setTglSuratJalan(Date tglSuratJalan) {
+        this.tglSuratJalan = tglSuratJalan;
+    }
+
     @Override
     public String toString() {
-        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + ", status=" + status + ", priceSell=" + priceSell + ", totalPrice=" + totalPrice + ", totalSales=" + totalSales + '}';
+        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + ", status=" + status + ", priceSell=" + priceSell + ", totalPrice=" + totalPrice + ", totalSales=" + totalSales + ", noSuratJalan=" + noSuratJalan + ", tglSuratJalan=" + tglSuratJalan + '}';
     }
 }

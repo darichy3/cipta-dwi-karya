@@ -15,5 +15,7 @@ public interface TransactionService {
     
     Transaction findOne(Integer idTransaction);
     
+    public Transaction updateSuratJalan(Transaction transaction);
+    
     void deleteTransaction(Integer idTransaction);
 }

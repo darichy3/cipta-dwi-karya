@@ -8,6 +8,8 @@ import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.StatusRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -32,6 +34,10 @@ public class TransactionServiceImpl implements TransactionService{
     
     @Autowired
     private InventoryRepository inventoryRepository;
+    
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter dtfYear = DateTimeFormatter.ofPattern("yyyy");
+    LocalDateTime now = LocalDateTime.now();
    
     @Override
     @Transactional
@@ -84,6 +90,19 @@ public class TransactionServiceImpl implements TransactionService{
             }
         }        
         return transactions;   
+    }
+    
+    @Override
+    @Transactional
+    public Transaction updateSuratJalan(Transaction transaction) {
+        logger.info("Year to day: " + dtfYear.format(now));
+        if(transaction != null){
+            repository.findByIdTransaction(transaction.getIdTransaction());
+            transaction.setNoSuratJalan("SJ/0"+transaction.getIdTransaction()+"/"+dtfYear.format(now));
+            transaction.setTglSuratJalan(dtf.format(now));
+            repository.save(transaction);
+        }
+        return transaction;        
     }
 
     @Override

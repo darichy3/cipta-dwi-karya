@@ -5,6 +5,8 @@ import id.cipta.dwi.karya.ciptadwikarya.form.FormInventory;
 import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
 import id.cipta.dwi.karya.ciptadwikarya.service.InventoryService;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,10 @@ public class InventoryController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String PostAddAction(FormInventory formInventory){
         
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        logger.info("Date to day: " + dtf.format(now));
+        
         Inventory inventory = new Inventory();
         inventory.setName(formInventory.getName());
         inventory.setPriceBuy(formInventory.getPriceBuy());
@@ -44,6 +50,7 @@ public class InventoryController {
         inventory.setSumIn(formInventory.getSumIn());
         inventory.setSumOut(0);
         inventory.setSumEnd(0);
+        inventory.setDateIn(dtf.format(now));
         inventory.setNote(formInventory.getNote());
         
         inventoryService.saveInventory(inventory);
@@ -65,6 +72,7 @@ public class InventoryController {
     public String GetEditAction(Model model, @PathVariable(required = false, name = "idInventory") Integer idInventory) {
         if (null != idInventory) {
                 model.addAttribute("inventories", inventoryService.findOne(idInventory));
+                logger.info(inventoryService.findOne(idInventory).getDateIn());
         } else {
             model.addAttribute("inventories", new Inventory());
         }

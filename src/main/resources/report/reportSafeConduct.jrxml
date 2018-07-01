@@ -15,6 +15,7 @@
 	<field name="custPhone" class="java.lang.String"/>
 	<field name="note" class="java.lang.String"/>
 	<field name="transDate" class="java.util.Date"/>
+	<field name="noSuratJalan" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -86,6 +87,16 @@
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="114" y="97" width="167" height="20" uuid="a91325c6-1e1b-4ce1-b191-200c65cecd40"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{custPhone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="48" height="20" uuid="4bdc9019-7289-41d3-b814-e06e8e62718a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nomer]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="48" y="20" width="100" height="20" uuid="8a7d0566-9067-4b7c-b3b3-8f1418afe7a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{noSuratJalan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

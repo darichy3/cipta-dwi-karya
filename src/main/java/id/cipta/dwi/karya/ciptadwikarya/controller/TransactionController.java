@@ -52,6 +52,9 @@ public class TransactionController {
     
     @Autowired
     private StatusRepository statusRepository;
+    
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDateTime now = LocalDateTime.now();
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String GetAddAction(FormTransaction formTransaction, Model model, Customers customer, Inventory inventory) {
@@ -66,14 +69,14 @@ public class TransactionController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUser = authentication.getName();
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime now = LocalDateTime.now();
         logger.info("Date to day: " + dtf.format(now));
 
         try {
             Transaction transaction = new Transaction();
             transaction.setTransactionDate(dtf.format(now));
             transaction.setDeliveryDate(formTransaction.getDeliveryDate());
+            transaction.setNoSuratJalan("");
+            transaction.setTglSuratJalan(dtf.format(now));
             transaction.setQuantity(formTransaction.getQuantity());
             transaction.setIdUser(userRepository.findByName(loginUser));
             transaction.setIdCustomer(customerRepository.findByIdCustomer(formTransaction.getIdCustomer()));

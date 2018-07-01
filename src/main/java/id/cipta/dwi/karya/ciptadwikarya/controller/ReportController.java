@@ -1,11 +1,15 @@
 package id.cipta.dwi.karya.ciptadwikarya.controller;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Customers;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormSafeConduct;
 import id.cipta.dwi.karya.ciptadwikarya.service.CustomersReportService;
+import id.cipta.dwi.karya.ciptadwikarya.service.InventoryReportService;
 import id.cipta.dwi.karya.ciptadwikarya.service.TransactionService;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,6 +31,9 @@ public class ReportController {
 
     @Autowired
     private ApplicationContext applicationContext;
+    
+    @Autowired
+    private InventoryReportService inventoryReportService;
 
     @Autowired
     private CustomersReportService customersReportService;
@@ -49,7 +56,13 @@ public class ReportController {
         JasperReportsPdfView jPdf = new JasperReportsPdfView();
 
         Map<String, Object> params = new HashMap();
-        if (jnsLap.trim().equalsIgnoreCase("Report Customers")) {
+        if (jnsLap.trim().equalsIgnoreCase("Report Inventory")) {
+            jPdf.setUrl("classpath:report/reportInventory.jrxml");
+            params.put("datasource", dataInventory(tglAwal, tglAkhir));
+        } else if (jnsLap.trim().equalsIgnoreCase("Report Surat Jalan")) {
+            jPdf.setUrl("classpath:report/reportSuratJalan.jrxml");
+            params.put("datasource", dataListSafeConduct(tglAwal, tglAkhir));
+        } else if (jnsLap.trim().equalsIgnoreCase("Report Customers")) {
             jPdf.setUrl("classpath:report/reportCustomer.jrxml");
             params.put("datasource", dataCustomers(tglAwal, tglAkhir));
         } else if (jnsLap.trim().equalsIgnoreCase("Report Transaction")) { //disamakan dengan combobox html
@@ -101,6 +114,26 @@ public class ReportController {
 
         return listForms;
     }
+    
+    private List<FormSafeConduct> dataListSafeConduct(String tglAwal, String tglAkhir) {
+
+        List<Transaction> listTrans = transactionService.findByTransactionDateBetween(tglAwal, tglAkhir);
+
+        List<FormSafeConduct> listForms = new ArrayList();
+
+        for (Transaction transaction : listTrans) {
+            FormSafeConduct formSafeConduct = new FormSafeConduct();
+            
+            formSafeConduct.setNoSuratJalan(transaction.getNoSuratJalan());
+            formSafeConduct.setTglSuratJalan(parseToDate(transaction.getTglSuratJalan()));
+            formSafeConduct.setCustName(transaction.getIdCustomer().getName());
+            formSafeConduct.setStatus(transaction.getIdStatus().getName());
+            
+            listForms.add(formSafeConduct);
+        }
+
+        return listForms;
+    }
 
     private List<Customers> dummyData() {
         List<Customers> customerses = new ArrayList();
@@ -112,6 +145,10 @@ public class ReportController {
             customerses.add(customers);
         }
         return customerses;
+    }
+    
+    private List<Inventory> dataInventory(String tglAwal, String tglAkhir) {
+        return inventoryReportService.reportInventory(tglAwal, tglAkhir);
     }
 
     private List<Customers> dataCustomers(String tglAwal, String tglAkhir) {
