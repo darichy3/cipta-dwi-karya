@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface InventoryRepository extends JpaRepository<Inventory, Integer>{
     List<Inventory> findByName(String name);
     
-     Inventory findByIdInventory(Integer idInventory);
+    Inventory findByIdInventory(Integer idInventory);
      
-     List<Inventory> findByDateInBetween(String tglAwal, String tglAkhir);
+    List<Inventory> findByDateInBetween(String tglAwal, String tglAkhir);
 }

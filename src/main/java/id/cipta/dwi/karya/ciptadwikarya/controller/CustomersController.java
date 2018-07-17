@@ -80,7 +80,7 @@ public class CustomersController {
      @RequestMapping(value={"/edit","/edit/{idCustomer}"}, method = RequestMethod.GET)
     public String GetEditAction(Model model, @PathVariable(required = false, name = "idCustomer") Integer idCustomer) {
         if (null != idCustomer) {
-                model.addAttribute("customers", customersService.findOne(idCustomer));
+            model.addAttribute("customers", customersService.findOne(idCustomer));
         } else {
             model.addAttribute("customers", new Customers());
         }

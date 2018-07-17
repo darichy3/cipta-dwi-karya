@@ -113,7 +113,6 @@ public class InventoryController {
             Inventory inventory = inventoryService.findOne(idInventory);
 
             model.addAttribute("inventories", inventory);
-
         } else {
             model.addAttribute("inventories", new Inventory());
         }
