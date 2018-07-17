@@ -37,6 +37,9 @@ public class Transaction {
     @Column(name = "quantity")
     private int quantity;
     
+    @Column(name = "total_harga")
+    private int totalHarga;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private Users idUser;
@@ -104,6 +107,14 @@ public class Transaction {
         this.quantity = quantity;
     }
 
+    public int getTotalHarga() {
+        return totalHarga;
+    }
+
+    public void setTotalHarga(int totalHarga) {
+        this.totalHarga = totalHarga;
+    }
+
     public Users getIdUser() {
         return idUser;
     }
@@ -146,6 +157,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", noSuratJalan=" + noSuratJalan + ", tglSuratJalan=" + tglSuratJalan + ", quantity=" + quantity + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", idStatus=" + idStatus + ", note=" + note + '}';
+        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", noSuratJalan=" + noSuratJalan + ", tglSuratJalan=" + tglSuratJalan + ", quantity=" + quantity + ", total_harga=" + totalHarga + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", idStatus=" + idStatus + ", note=" + note + '}';
     }
 }

@@ -2,6 +2,7 @@ package id.cipta.dwi.karya.ciptadwikarya.controller;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Customers;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Status;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Users;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormTransaction;
@@ -68,7 +69,7 @@ public class TransactionController {
     public String PostAddAction(FormTransaction formTransaction) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUser = authentication.getName();
-
+        
         logger.info("Date to day: " + dtf.format(now));
 
         try {
@@ -77,12 +78,12 @@ public class TransactionController {
             transaction.setNoSuratJalan("");
             transaction.setTglSuratJalan(dtf.format(now));
             transaction.setDeliveryDate(formTransaction.getDeliveryDate());
-            transaction.setNoSuratJalan("");
-            transaction.setTglSuratJalan(dtf.format(now));
             transaction.setQuantity(formTransaction.getQuantity());
             transaction.setIdUser(userRepository.findByName(loginUser));
             transaction.setIdCustomer(customerRepository.findByIdCustomer(formTransaction.getIdCustomer()));
             transaction.setIdInventory(inventoryRepository.findByIdInventory(formTransaction.getIdInventory()));
+            int totalHarga = (formTransaction.getQuantity()*inventoryRepository.findByIdInventory(formTransaction.getIdInventory()).getPriceSell());
+            transaction.setTotalHarga(totalHarga);
             transaction.setIdStatus(statusRepository.findByIdStatus(1));
             transaction.setNote(formTransaction.getNote());
 
@@ -99,11 +100,8 @@ public class TransactionController {
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public String GetMenuAction(Model model, @Valid @ModelAttribute("transactions") Transaction transactions) {
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime now = LocalDateTime.now();
+        
         logger.info("Date to day: " + dtf.format(now));
-
         model.addAttribute("transactions", transactionRepository.findByTransactionDate(dtf.format(now)));
 
         return "menuTransaction";
@@ -138,10 +136,14 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/return/{idTransaction}", method = RequestMethod.GET)
-    public String GetDeleteAction(Model model, @PathVariable(required = true, name = "idTransaction") Integer idTransaction) {
-        transactionService.deleteTransaction(idTransaction);
-        model.addAttribute("transactions", transactionService.findAll());
-        return "menuTransaction";
+    public String GetReturAction(Model model, @PathVariable(required = true, name = "idTransaction") Integer idTransaction) {
+        Transaction transaction = transactionService.findOne(idTransaction);
+        Status status = statusRepository.findByName("Retur");
+        transaction.setIdStatus(status);
+        transactionService.returTransaction(transaction);
+//        model.addAttribute("transactions", transactionRepository.findByTransactionDate(dtf.format(now)));
+//        return "menuTransaction";
+        return "redirect:/transaction/menu";
     }
 
     @RequestMapping(value = {"/print", "/print/{idTransaction}"}, method = RequestMethod.GET)

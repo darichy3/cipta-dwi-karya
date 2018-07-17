@@ -62,19 +62,17 @@ public class TransactionServiceImpl implements TransactionService{
             Inventory inventory = inventoryRepository.findOne(transaction.getIdInventory().getIdInventory());
             Integer validSumOut = inventoryRepository.findOne(transaction.getIdInventory().getIdInventory()).getSumOut();
             Integer validSumEnd = inventoryRepository.findOne(transaction.getIdInventory().getIdInventory()).getSumEnd();
-//            if(validSumOut==0){
-//                inventory.setSumOut(transaction.getQuantity());
-//            }else{
-//                inventory.setSumOut(validSumOut+transaction.getQuantity());
-//            }
-//            if(validSumEnd==0){
-//                inventory.setSumEnd(inventory.getSumIn()-transaction.getQuantity());
-//            }else{
-//                inventory.setSumEnd(validSumEnd-transaction.getQuantity());
-//            }
+            if(validSumOut==0){
+                inventory.setSumOut(transaction.getQuantity());
+            }else{
+                inventory.setSumOut(validSumOut+transaction.getQuantity());
+            }
+            if(validSumEnd==0){
+                inventory.setSumEnd(inventory.getSumIn()-transaction.getQuantity());
+            }else{
+                inventory.setSumEnd(validSumEnd-transaction.getQuantity());
+            }
             
-            inventory.setSumOut(transaction.getQuantity());
-            inventory.setSumEnd(inventory.getSumIn()-transaction.getIdInventory().getSumOut());
             inventory = inventoryRepository.save(inventory);
             logger.info(inventory.toString());
             }       
@@ -104,20 +102,47 @@ public class TransactionServiceImpl implements TransactionService{
             Inventory inventory = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory());
             Integer validSumOut = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumOut();
             Integer validSumEnd = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumEnd();
-//            if(validSumOut==0){
-//                inventory.setSumOut(transactionDb.getQuantity());
-//            }else{
-//                inventory.setSumOut(validSumOut+transactionDb.getQuantity());
-//            }
-//            if(validSumEnd==0){
-//                inventory.setSumEnd(inventory.getSumIn()-transactionDb.getQuantity());
-//            }else{
-//                inventory.setSumEnd(validSumEnd-transactionDb.getQuantity());
-//            }
+            if(validSumOut==0){
+                inventory.setSumOut(transactionDb.getQuantity());
+            }else{
+                inventory.setSumOut(validSumOut+transactionDb.getQuantity());
+            }
+            if(validSumEnd==0){
+                inventory.setSumEnd(inventory.getSumIn()-transactionDb.getQuantity());
+            }else{
+                inventory.setSumEnd(validSumEnd-transactionDb.getQuantity());
+            }
             
-            inventory.setSumOut(transactionDb.getQuantity());
-            inventory.setSumEnd(inventory.getSumIn()-transactionDb.getIdInventory().getSumOut());
             inventory = inventoryRepository.save(inventory);
+            }
+        }        
+        return transactions;   
+    }
+    
+    @Override
+    public Transaction returTransaction(@Valid @ModelAttribute("transactions") Transaction transactions) {
+        logger.info("Form: "+transactions.toString());
+        if(transactions != null){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String loginUser = authentication.getName();
+  
+            Transaction transactionDb = repository.findByIdTransaction(transactions.getIdTransaction());
+            transactionDb.setIdUser(userRepository.findByName(loginUser));
+            transactionDb.setIdStatus(transactions.getIdStatus());
+            
+            repository.save(transactionDb); 
+            logger.info("TrnsactionDB: "+transactionDb.toString()); 
+     
+            if(transactionDb != null){
+            Inventory inventory = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory());
+            Integer validSumOut = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumOut();
+            Integer validSumEnd = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumEnd();
+            
+            inventory.setSumOut(validSumOut-transactionDb.getQuantity());
+            inventory.setSumEnd(validSumEnd+transactionDb.getQuantity());
+                
+            inventory = inventoryRepository.save(inventory);
+              logger.info("Inventory update"+inventory.toString());
             }
         }        
         return transactions;   
