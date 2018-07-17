@@ -5,6 +5,8 @@ import java.util.Date;
 public class FormSafeConduct {
     private Date transDate;
     private Date delivDate;
+    private String noSuratJalan;
+    private Date tglSuratJalan;
     private int quantity;
     private String admin;
     private String barang;
@@ -13,6 +15,9 @@ public class FormSafeConduct {
     private String custPhone;
     private String note;
     private String status;
+    private int priceSell;
+    private int totalPrice;
+    private int totalSales;
 
     public String getStatus() {
         return status;
@@ -36,6 +41,22 @@ public class FormSafeConduct {
 
     public void setDelivDate(Date delivDate) {
         this.delivDate = delivDate;
+    }
+
+    public String getNoSuratJalan() {
+        return noSuratJalan;
+    }
+
+    public void setNoSuratJalan(String noSuratJalan) {
+        this.noSuratJalan = noSuratJalan;
+    }
+
+    public Date getTglSuratJalan() {
+        return tglSuratJalan;
+    }
+
+    public void setTglSuratJalan(Date tglSuratJalan) {
+        this.tglSuratJalan = tglSuratJalan;
     }
 
     public int getQuantity() {
@@ -94,9 +115,32 @@ public class FormSafeConduct {
         this.note = note;
     }
 
+    public int getPriceSell() {
+        return priceSell;
+    }
+
+    public void setPriceSell(int priceSell) {
+        this.priceSell = priceSell;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public int getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(int totalSales) {
+        this.totalSales = totalSales;
+    }
+
     @Override
     public String toString() {
-        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + '}';
+        return "FormSafeConduct{" + "transDate=" + transDate + ", delivDate=" + delivDate + ", noSuratJalan=" + noSuratJalan + ", tglSuratJalan=" + tglSuratJalan + ", quantity=" + quantity + ", admin=" + admin + ", barang=" + barang + ", custName=" + custName + ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", note=" + note + ", status=" + status + ", priceSell=" + priceSell + ", totalPrice=" + totalPrice + ", totalSales=" + totalSales + '}';
     }
-    
 }

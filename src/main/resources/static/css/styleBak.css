@@ -1,0 +1,138 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 23, 2018, 5:25:45 AM
+    Author     : DhananCici
+*/
+
+/** {margin:0; padding:0;}
+
+*/body {
+	background-color:#E3F6CE;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+}
+
+nav {
+	background-color:#01DF01; 
+	height:40px; 
+	line-height:50px; 
+	position: relative;
+	width:100%;
+	margin:auto;
+	margin-top:80px;
+}
+
+nav ul {
+	list-style:none;
+}
+nav ul li a {
+	float:left; 
+	width:150px; 
+	display:block; 
+	text-align:center; 
+	color:#FFF; 
+	text-decoration:none; 
+	text-transform:uppercase;
+}
+
+nav ul li a:hover {
+	background-color:#F2F5A9;
+        color: #000;
+	display:block;
+}
+
+nav ul li:hover ul {
+	display:block;
+}
+nav ul ul {
+	display:none; 
+	list-style:none; 
+	position:absolute; 
+	background-color:#01DF01;
+	left:300px; 
+	top:50px; 
+	width:190px;
+}
+
+nav ul ul li a {
+	float:none; 
+	display:block; 
+	padding-left:30px; 
+	text-align:left; 
+	width:160px;
+}
+
+nav ul ul li a:hover {
+	color:#F2F5A9;
+}
+
+.dropmenu {
+    background: #01DF01;
+    height: 40px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+}
+.dropmenu li {
+    border-right: solid 1px white;
+    float: left;
+    height: 40px;
+}
+.dropmenu li a {
+    color: #fff;
+    display: block;
+    font: 12px arial, verdana, sans-serif;
+    font-weight: bold;
+    padding: 9px 20px;
+    text-decoration: none;
+}
+.dropmenu li:hover { background: #01DF01; position: relative; }
+.dropmenu li:hover a { text-decoration: underline; }
+.dropmenu li:hover ul {
+    background-color: #01DF01;
+    border: 1px solid grey;
+    left: 0px;
+    padding: 3px;
+    top: 30px;
+    width: 160px;
+}
+.dropmenu li:hover ul li { border: none; height: 40px; }
+.dropmenu li:hover ul li a {
+    background-color: #01DF01;
+    border: 1px solid transparent;
+    color: #fff;
+    display: block;
+    font-size: 11px;
+    height: 40px;
+    line-height: 18px;
+    padding: 0px;
+    text-decoration: none;
+    text-indent: 5px;
+    width: 158px;
+    padding: 3px;
+}
+.dropmenu li:hover ul li a:hover {
+    background: #F2F5A9;
+    border: solid 1px #444;
+    color: #000;
+    height: 40px;
+    padding: 3px;
+}
+.dropmenu ul {
+    left: -9999px;
+    list-style-type: none;
+    position: absolute;
+    top: -9999px;
+}
+
+.form-control {
+    width: 400px;
+}
+
+.isi{
+    text-align: center;
+}

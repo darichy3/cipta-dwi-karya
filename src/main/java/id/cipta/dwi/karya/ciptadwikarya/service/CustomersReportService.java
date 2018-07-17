@@ -5,5 +5,5 @@ import java.util.Date;
 import java.util.List;
 
 public interface CustomersReportService {
-    public List<Customers> reportCustomer(Date tglAwal, Date tglAkhir); 
+    public List<Customers> reportCustomer(String tglAwal, String tglAkhir);
 }

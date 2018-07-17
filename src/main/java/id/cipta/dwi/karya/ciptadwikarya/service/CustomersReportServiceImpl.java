@@ -14,7 +14,7 @@ public class CustomersReportServiceImpl implements CustomersReportService{
     private CustomersRepository repository;
     
     @Override
-    public List<Customers> reportCustomer(Date tglAwal, Date tglAkhir) {
+    public List<Customers> reportCustomer(String tglAwal, String tglAkhir) {
         return repository.findByCreatedDateBetween(tglAwal, tglAkhir);
     }
     

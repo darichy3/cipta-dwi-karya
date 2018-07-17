@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"      
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      >
+    <head>
+        <link rel="icon" th:href="@{/img/cdk.jpg}" />
+
+        <title>Home</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/css/product.css}" rel="stylesheet" />
+
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
+        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        <div class="container">
+            <!--<div>-->
+            <section layout:fragment="welcome" class="container py-5">
+                <h2 style="text-align: center;">WELCOME TO</h2>
+                <h1 style="text-align: center;">PT. CIPTA DWI KARYA</h1>
+                <h2 style="text-align: center;">ADMIN PORTAL</h2>
+            </section>
+            <div class="col-md-12">
+                <nav >
+                    <ul class="dropmenu">
+                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/index}">Home</a></li>
+                        <li><a class="py-2 d-none d-md-inline-block" href="#">Master</a>
+                            <ul>
+                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/menu}">User</a></li>
+                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/menu}">Customer</a></li>
+                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/menu}">Inventory</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/transaction/menu}">Transaction</a></li>
+                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/report/menu}">Report</a> </li>
+                        <li>
+                            <a th:href="@{/user/edit/__${session.loginId}__}" th:text="${session.userName}"></a>
+                            <ul>
+                                <li>
+                                    <a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a>                                        
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--</div>-->
+                </nav>
+            </div>
+                <div class="row col-md-12">
+                    <!--<nav class="site-header sticky-top py-1">-->
+                    <!--<div class="container d-flex flex-column flex-md-row justify-content-between">-->
+                    <!-- Main content -->
+                    
+                    
+<!--                    <footer class="container py-5">
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+                            </div>  
+                        </div>
+                    </footer>-->
+
+                </div>
+            <!--</div>-->
+        </div>
+        <div layout:fragment="content" class="container py-5 isi">
+        </div>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script th:src="@{/js/jquery-3.3.1.slim.min.js}" ></script>
+        <script th:src="@{/js/vendor/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/holder.min.js}"></script>
+
+        <script>
+            Holder.addTheme('thumb', {
+                bg: '#55595c',
+                fg: '#eceeef',
+                text: 'Thumbnail'
+            });
+        </script>
+    </body>
+</html>

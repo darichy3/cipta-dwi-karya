@@ -6,11 +6,12 @@
         <title>List User Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
-            <h3 style="text-align: center;">List Admin Cipta Dwi Karya</h3>
+        <div layout:fragment="content" class="container">
+            <h3 style="text-align: center;">List Admin</h3>
             <a type="button" class="btn btn-success py-2 d-none d-md-inline-block" th:href="@{/user/add}">User Add</a>
-            <table class="table table-bordered">
-                <thead style="background-color: #808896; color: white;">
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered table-striped">
+                    <thead >
                     <tr>
                         <th>No</th>
                         <th>Username</th>
@@ -20,7 +21,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody style="background-color: #E8ECF5; color:black;">
+                <tbody >
                     <tr th:each="user,stat : ${users}">
                         <td th:text="${stat.index}+1">Cell 1</td>
                         <td th:text="${user.username}">Cell 2</td>
@@ -37,6 +38,15 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+            </div>
+        </div>        
+
+        <section layout:fragment="page-script">
+            <script>
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                });
+            </script>
+        </section>
     </body>
 </html>

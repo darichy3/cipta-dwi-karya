@@ -28,6 +28,12 @@ public class Transaction {
     @Column(name = "delivery_date")
     private String deliveryDate;
     
+    @Column(name = "no_surat_jalan")
+    private String noSuratJalan;
+    
+    @Column(name = "tgl_surat_jalan")
+    private String tglSuratJalan;
+    
     @Column(name = "quantity")
     private int quantity;
     
@@ -72,6 +78,22 @@ public class Transaction {
 
     public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+
+    public String getNoSuratJalan() {
+        return noSuratJalan;
+    }
+
+    public void setNoSuratJalan(String noSuratJalan) {
+        this.noSuratJalan = noSuratJalan;
+    }
+
+    public String getTglSuratJalan() {
+        return tglSuratJalan;
+    }
+
+    public void setTglSuratJalan(String tglSuratJalan) {
+        this.tglSuratJalan = tglSuratJalan;
     }
 
     public int getQuantity() {
@@ -124,7 +146,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", quantity=" + quantity + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", idStatus=" + idStatus + ", note=" + note + '}';
+        return "Transaction{" + "idTransaction=" + idTransaction + ", transactionDate=" + transactionDate + ", deliveryDate=" + deliveryDate + ", noSuratJalan=" + noSuratJalan + ", tglSuratJalan=" + tglSuratJalan + ", quantity=" + quantity + ", idUser=" + idUser + ", idInventory=" + idInventory + ", idCustomer=" + idCustomer + ", idStatus=" + idStatus + ", note=" + note + '}';
     }
-    
 }

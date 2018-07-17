@@ -1,18 +1,65 @@
 package id.cipta.dwi.karya.ciptadwikarya.form;
 
 public class FormInventory {
+    private int idInventory;
     private String name;
+    private int priceBuy;
+    private int priceSell;
     private int sumIn;
     private int sumOut;
     private int sumEnd;
     private String note;
+    private String dateIn;
+    private boolean enable;
 
+    public int getIdInventory() {
+        return idInventory;
+    }
+
+    public void setIdInventory(int idInventory) {
+        this.idInventory = idInventory;
+    }
+
+    public String getDateIn() {
+        return dateIn;
+    }
+
+    public void setDateIn(String dateIn) {
+        this.dateIn = dateIn;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+    
+     
+    
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPriceBuy() {
+        return priceBuy;
+    }
+
+    public void setPriceBuy(int priceBuy) {
+        this.priceBuy = priceBuy;
+    }
+
+    public int getPriceSell() {
+        return priceSell;
+    }
+
+    public void setPriceSell(int priceSell) {
+        this.priceSell = priceSell;
     }
 
     public int getSumIn() {
@@ -49,8 +96,6 @@ public class FormInventory {
 
     @Override
     public String toString() {
-        return "FormInventory{" + "name=" + name + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", note=" + note + '}';
+        return "FormInventory{" + "name=" + name + ", priceBuy=" + priceBuy + ", priceSell=" + priceSell + ", sumIn=" + sumIn + ", sumOut=" + sumOut + ", sumEnd=" + sumEnd + ", note=" + note + '}';
     }
-   
-    
 }

@@ -6,7 +6,7 @@
         <title>Add User Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
+        <div layout:fragment="content" class="container">
             <form class="form-horizontal" th:action="@{/user/add}" th:object="${formUsers}" method="POST" >
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">Username</label>

@@ -1,86 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"      
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       >
     <head>
-        <link rel="icon" th:href="@{/img/cdk.jpg}" />
+        <title>Reveal Bootstrap Template</title>
 
-        <title>Home</title>
+        <!-- Favicons -->
+        <link th:href="@{/img/favicon.png}" rel="icon" />
+        <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon" />
 
-        <!-- Bootstrap core CSS -->
-        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet" />
 
-        <!-- Custom styles for this template -->
-        <link th:href="@{/css/product.css}" rel="stylesheet" />
+        <!-- Bootstrap CSS File -->
+        <link th:href="@{/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 
+        <!-- DataTables -->
+        <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}" />
+
+        <!-- Libraries CSS Files -->
+        <link th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
+        <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet" />
+        <link th:href="@{/lib/ionicons/css/ionicons.min.css}" rel="stylesheet"/>
+        <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet" />
+        <link th:href="@{/lib/magnific-popup/magnific-popup.css}" rel="stylesheet" />
+        <link th:href="@{/lib/ionicons/css/ionicons.min.css}" rel="stylesheet" />
+
+        <!-- Main Stylesheet File -->
         <link th:href="@{/css/style.css}" rel="stylesheet" />
-        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
 
     </head>
 
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <!--<nav class="site-header sticky-top py-1">-->
-                    <!--<div class="container d-flex flex-column flex-md-row justify-content-between">-->
-                    <div class="col-md-12">
-                        <nav>
-                            <ul class="dropmenu">
-                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/index}">Home</a></li>
-                                <li><a class="py-2 d-none d-md-inline-block" href="#">Master</a>
-                                    <ul>
-                                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/user/menu}">User</a></li>
-                                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/customer/menu}">Customer</a></li>
-                                        <li><a class="py-2 d-none d-md-inline-block" th:href="@{/inventory/menu}">Inventory</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/transaction/menu}">Transaction</a></li>
-                                <li><a class="py-2 d-none d-md-inline-block" th:href="@{/report/menu}">Report</a> </li>
+    <body id="body">
+
+        <!--==========================
+          Header
+        ============================-->
+        <header id="header">
+            <div class="container">
+
+                <div id="logo" class="pull-left">
+                    <h1><a href="#body" class="scrollto"><small>PT</small><span> <small>Cipta Dwi Karya</small></span></a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+                </div>
+
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a th:href="@{/index}">Home</a></li>
+                        <li class="menu-has-children"><a href="#">Master Data</a>
+                            <ul>
+                                <li><a th:href="@{/user/menu}">User</a></li>
+                                <li><a th:href="@{/customer/menu}">Customer</a></li>
+                                <li><a th:href="@{/inventory/menu}">Inventory</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/transaction/menu}">Transaction</a></li>
+                        <li><a th:href="@{/report/menu}">Report</a> </li>                        
+                        <li class="menu-has-children">
+                            <a th:href="@{/user/edit/__${session.loginId}__}" th:text="${session.userName}"></a>
+                            <ul>
                                 <li>
-                                    <a th:href="@{/user/edit/__${session.loginId}__}" th:text="${session.userName}"></a>
-                                    <ul>
-                                        <li>
-                                            <a class="py-2 d-none d-md-inline-block" th:href="@{/logout}">Logout</a>                                        
-                                        </li>
-                                    </ul>
+                                    <a th:href="@{/logout}">Logout</a>                                        
                                 </li>
                             </ul>
-                            <!--</div>-->
-                        </nav>
-                    </div>
+                        </li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </header><!-- #header -->
 
-                    <!-- Main content -->
-                    <div layout:fragment="content" class="container py-5">
-                        <h1 style="text-align: center;"> Selamat Datang di menu Admin PT. Cipta Dwi Karya</h1>
-                    </div>
+        <!--==========================
+          Main
+        ============================-->
 
-                    <footer class="container py-5">
-                        <div class="row">
-                            <div class="col-12 col-md">
-                                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-                            </div>  
-                        </div>
-                    </footer>
+        <main id="main" >    
+            <section id="contact" class="wow fadeInUp">
+                <div layout:fragment="content" class="container">
 
                 </div>
-            </div>
-        </div>
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script th:src="@{/js/jquery-3.3.1.slim.min.js}" ></script>
-        <script th:src="@{/js/vendor/popper.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <script th:src="@{/js/holder.min.js}"></script>
+            </section>
+        </main> <!--#main -->
 
-        <script>
-            Holder.addTheme('thumb', {
-                bg: '#55595c',
-                fg: '#eceeef',
-                text: 'Thumbnail'
-            });
-        </script>
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- JavaScript Libraries -->
+        <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+        <script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+        <script th:src="@{/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/lib/easing/easing.min.js}"></script>
+        <script th:src="@{/lib/superfish/hoverIntent.js}"></script>
+        <script th:src="@{/lib/superfish/superfish.min.js}"></script>
+        <script th:src="@{/lib/wow/wow.min.js}"></script>
+        <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+        <script th:src="@{/lib/magnific-popup/magnific-popup.min.js}"></script>
+        <script th:src="@{/lib/sticky/sticky.js}"></script>
+        <!-- Contact Form JavaScript File -->
+        <script th:src="@{/contactform/contactform.js}"></script>
+
+        <!-- Template Main Javascript File -->
+        <script th:src="@{/js/main.js}"></script>
+
+
+        <!-- DataTables -->
+        <script th:src="@{/js/jquery.dataTables.min.js}"></script>
+
+        <section layout:fragment="page-script">
+            
+        </section>
     </body>
 </html>

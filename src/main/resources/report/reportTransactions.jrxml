@@ -15,6 +15,9 @@
 	<field name="note" class="java.lang.String"/>
 	<field name="transDate" class="java.util.Date"/>
 	<field name="status" class="java.lang.String"/>
+	<field name="priceSell" class="java.lang.Integer"/>
+	<field name="totalPrice" class="java.lang.Integer"/>
+	<field name="totalSales" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -110,7 +113,7 @@
 				<text><![CDATA[Delive  Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="249" y="0" width="32" height="20" uuid="2dfaf843-a345-4a78-988b-9b3b578c305f"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="238" y="0" width="32" height="20" uuid="2dfaf843-a345-4a78-988b-9b3b578c305f"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -120,7 +123,7 @@
 				<text><![CDATA[Qty]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="281" y="0" width="91" height="20" uuid="fcc282c5-bea2-4751-ab34-b815f65c2a88"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="270" y="0" width="80" height="20" uuid="fcc282c5-bea2-4751-ab34-b815f65c2a88"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -130,7 +133,7 @@
 				<text><![CDATA[Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="372" y="0" width="114" height="20" uuid="8310c65c-d985-4620-b9b8-b1161603c48e"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="521" y="0" width="118" height="20" uuid="8310c65c-d985-4620-b9b8-b1161603c48e"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -140,27 +143,7 @@
 				<text><![CDATA[Cust Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="486" y="0" width="138" height="20" uuid="c096aad5-3d71-42f8-8b26-d3fef7f132b2"/>
-				<box>
-					<bottomPen lineWidth="0.75"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[Cust Address]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="624" y="0" width="90" height="20" uuid="aafc840d-4c9f-4ec3-845f-c5d44704230a"/>
-				<box>
-					<bottomPen lineWidth="0.75"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[Cust Contact]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="714" y="0" width="88" height="20" uuid="731df5f9-e9da-403a-a577-b05dc1922b1d"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="639" y="0" width="163" height="20" uuid="731df5f9-e9da-403a-a577-b05dc1922b1d"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -170,7 +153,7 @@
 				<text><![CDATA[Note]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="0" width="69" height="20" uuid="b6273f94-c182-4817-85b6-878961fe78cb"/>
+				<reportElement x="180" y="0" width="58" height="20" uuid="b6273f94-c182-4817-85b6-878961fe78cb"/>
 				<box>
 					<bottomPen lineWidth="0.75"/>
 				</box>
@@ -178,6 +161,26 @@
 					<font size="11" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="350" y="0" width="75" height="20" uuid="f7bee274-e789-4a9a-b19d-28c2fb9f1661"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="425" y="0" width="96" height="20" uuid="7dfa2dfd-0f9c-4941-95cf-b40546bcd23f"/>
+				<box>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Total Harga]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -199,42 +202,65 @@
 				<textFieldExpression><![CDATA[$F{delivDate}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="249" y="0" width="32" height="20" uuid="e2536e22-80c6-435d-baa0-8ebf5ec66200"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="238" y="0" width="32" height="20" uuid="e2536e22-80c6-435d-baa0-8ebf5ec66200"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="281" y="0" width="91" height="20" uuid="82e9ef58-4617-470f-b2b5-8bb942c3d85a"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="270" y="0" width="80" height="20" uuid="82e9ef58-4617-470f-b2b5-8bb942c3d85a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{barang}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="372" y="0" width="114" height="20" uuid="d805db0e-ddbf-4360-9e2d-b3fb2b77456e"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="521" y="0" width="118" height="20" uuid="d805db0e-ddbf-4360-9e2d-b3fb2b77456e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{custName}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="486" y="0" width="138" height="20" uuid="b588e698-f55e-4212-9f97-3225f54fe053"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{custAddress}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="624" y="0" width="90" height="20" uuid="a91325c6-1e1b-4ce1-b191-200c65cecd40"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{custPhone}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="714" y="0" width="88" height="20" uuid="31e73ca6-8957-4e7e-8f6a-34ac2d8c0602"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="639" y="0" width="163" height="20" uuid="31e73ca6-8957-4e7e-8f6a-34ac2d8c0602"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="0" width="69" height="20" uuid="a34e6ec3-5bae-445a-8abd-bf53539b5bb1"/>
+				<reportElement x="180" y="0" width="58" height="20" uuid="a34e6ec3-5bae-445a-8abd-bf53539b5bb1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="350" y="0" width="75" height="20" uuid="d27322e2-9a8d-4a2b-ae32-3b209fa72a1e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{priceSell}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="425" y="0" width="96" height="20" uuid="a726cb63-9478-4d7d-8594-6f4c6ce19ec4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{totalPrice}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
+	<summary>
+		<band height="22">
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="425" y="0" width="96" height="20" uuid="bd95d96c-fd52-449a-baf7-609f0cd15a20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{totalSales}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="270" y="0" width="155" height="20" uuid="f1591bba-a33f-4165-a4df-c643017b803d"/>
+				<box>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Total Sales]]></text>
+			</staticText>
+		</band>
+	</summary>
 </jasperReport>

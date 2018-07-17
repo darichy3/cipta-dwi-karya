@@ -73,6 +73,8 @@ public class TransactionController {
         try {
             Transaction transaction = new Transaction();
             transaction.setTransactionDate(dtf.format(now));
+            transaction.setNoSuratJalan("");
+            transaction.setTglSuratJalan(dtf.format(now));
             transaction.setDeliveryDate(formTransaction.getDeliveryDate());
             transaction.setQuantity(formTransaction.getQuantity());
             transaction.setIdUser(userRepository.findByName(loginUser));
@@ -132,7 +134,7 @@ public class TransactionController {
         return "redirect:/transaction/menu";
     }
 
-    @RequestMapping(value = "/delete/{idTransaction}", method = RequestMethod.GET)
+    @RequestMapping(value = "/return/{idTransaction}", method = RequestMethod.GET)
     public String GetDeleteAction(Model model, @PathVariable(required = true, name = "idTransaction") Integer idTransaction) {
         transactionService.deleteTransaction(idTransaction);
         model.addAttribute("transactions", transactionService.findAll());

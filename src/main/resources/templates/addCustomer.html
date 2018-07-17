@@ -6,7 +6,7 @@
         <title>Add Customer Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
+        <div layout:fragment="content" class="container">
             <form class="form-horizontal" th:action="@{/customer/add}" th:object="${formCustomers}" method="POST" >
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>

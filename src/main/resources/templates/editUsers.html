@@ -6,7 +6,7 @@
         <title>Edit User Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
+        <div layout:fragment="content" class="container">
             <form class="form-horizontal" th:action="@{/user/edit}" th:object="${formUsers}" method="POST" >
                 <input th:field="${users.idUser}" name="idUser" th:type="hidden" id="idUser" />
                 <div class="form-group">

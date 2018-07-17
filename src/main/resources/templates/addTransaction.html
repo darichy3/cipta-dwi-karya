@@ -6,7 +6,7 @@
         <title>Add Transaction Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
+        <div layout:fragment="content" class="container">
             <form class="form-horizontal" th:action="@{/transaction/add}" th:object="${formTransaction}" method="POST" >
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Customer</label>

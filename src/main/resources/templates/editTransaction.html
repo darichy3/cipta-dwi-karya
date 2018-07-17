@@ -6,7 +6,7 @@
         <title>Add Transaction Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
+        <div layout:fragment="content" class="container">
             <form class="form-horizontal" th:action="@{/transaction/edit}" th:object="${transactions}" method="POST" >
 
                 <input th:field="*{idTransaction}" type="hidden" id="idTransaction" />
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="quantity" class="col-sm-2 control-label">Quantity</label>
                     <div class="col-sm-10">
-                        <input th:field="*{quantity}" type="text" class="form-control" id="quantity" placeholder="Quantity" />
+                        <input th:field="*{quantity}" type="text" class="form-control" id="quantity" readonly="readonly" placeholder="Quantity" />
                     </div>
                 </div>
 

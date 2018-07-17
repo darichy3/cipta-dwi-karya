@@ -6,7 +6,7 @@
         <title>Edit Customer Menu</title>  
     </head>
     <body>
-        <div layout:fragment="content" class="container py-5">
+        <div layout:fragment="content" class="container">
             <form class="form-horizontal" th:action="@{/customer/edit}" th:object="${formCustomers}" method="POST" >
                 <input th:field="${customers.idCustomer}" name="idCustomer" th:type="hidden" id="idCustomer" />
                 <div class="form-group">
