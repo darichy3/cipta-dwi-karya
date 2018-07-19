@@ -9,8 +9,6 @@ public interface TransactionService {
     
     public Transaction updateTransaction(Transaction transaction);
     
-    public Transaction returTransaction(Transaction transaction);
-    
     List<Transaction> findAll();
 
     public List<Transaction> findByTransactionDateBetween(String tglAwal, String tglAkhir);

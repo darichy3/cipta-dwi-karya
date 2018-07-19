@@ -120,35 +120,6 @@ public class TransactionServiceImpl implements TransactionService{
     }
     
     @Override
-    public Transaction returTransaction(@Valid @ModelAttribute("transactions") Transaction transactions) {
-        logger.info("Form: "+transactions.toString());
-        if(transactions != null){
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String loginUser = authentication.getName();
-  
-            Transaction transactionDb = repository.findByIdTransaction(transactions.getIdTransaction());
-            transactionDb.setIdUser(userRepository.findByName(loginUser));
-            transactionDb.setIdStatus(transactions.getIdStatus());
-            
-            repository.save(transactionDb); 
-            logger.info("TrnsactionDB: "+transactionDb.toString()); 
-     
-            if(transactionDb != null){
-            Inventory inventory = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory());
-            Integer validSumOut = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumOut();
-            Integer validSumEnd = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumEnd();
-            
-            inventory.setSumOut(validSumOut-transactionDb.getQuantity());
-            inventory.setSumEnd(validSumEnd+transactionDb.getQuantity());
-                
-            inventory = inventoryRepository.save(inventory);
-              logger.info("Inventory update"+inventory.toString());
-            }
-        }        
-        return transactions;   
-    }
-    
-    @Override
     @Transactional
     public Transaction updateSuratJalan(Transaction transaction) {
         logger.info("Year to day: " + dtfYear.format(now));
