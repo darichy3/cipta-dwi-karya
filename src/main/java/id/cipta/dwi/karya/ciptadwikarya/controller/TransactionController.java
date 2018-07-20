@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/transaction")
@@ -50,10 +51,10 @@ public class TransactionController {
 
     @Autowired
     private UsersRepository userRepository;
-    
+
     @Autowired
     private StatusRepository statusRepository;
-    
+
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDateTime now = LocalDateTime.now();
 
@@ -69,7 +70,7 @@ public class TransactionController {
     public String PostAddAction(FormTransaction formTransaction) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loginUser = authentication.getName();
-        
+
         logger.info("Date to day: " + dtf.format(now));
 
         try {
@@ -82,7 +83,7 @@ public class TransactionController {
             transaction.setIdUser(userRepository.findByName(loginUser));
             transaction.setIdCustomer(customerRepository.findByIdCustomer(formTransaction.getIdCustomer()));
             transaction.setIdInventory(inventoryRepository.findByIdInventory(formTransaction.getIdInventory()));
-            int totalHarga = (formTransaction.getQuantity()*inventoryRepository.findByIdInventory(formTransaction.getIdInventory()).getPriceSell());
+            int totalHarga = (formTransaction.getQuantity() * inventoryRepository.findByIdInventory(formTransaction.getIdInventory()).getPriceSell());
             transaction.setTotalHarga(totalHarga);
             transaction.setIdStatus(statusRepository.findByIdStatus(1));
             transaction.setNote(formTransaction.getNote());
@@ -99,19 +100,31 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public String GetMenuAction(Model model, @Valid @ModelAttribute("transactions") Transaction transactions) {
-        
-        logger.info("Date to day: " + dtf.format(now));
-        model.addAttribute("transactions", transactionRepository.findByTransactionDate(dtf.format(now)));
+    public String GetMenuAction(@RequestParam(name = "startDate", required = false) String startDate,
+            @RequestParam(name = "endDate", required = false) String endDate,
+            Model model) {
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        logger.info("Date to day: " + dtf.format(now));
+        logger.info("Start Date: " + startDate);
+        logger.info("End Date: " + endDate);
+
+        if (startDate != null && endDate != null) {
+            model.addAttribute("transactions", transactionRepository.findByTransactionDateBetween(startDate, endDate));
+            model.addAttribute("startDate", startDate);
+            model.addAttribute("endDate", endDate);
+        } else {
+            model.addAttribute("transactions", transactionRepository.findByTransactionDate(dtf.format(now)));
+        }
         return "menuTransaction";
     }
 
     @RequestMapping(value = {"/edit/{idTransaction}"}, method = RequestMethod.GET)
     public String GetEditAction(Model model, @PathVariable(required = false, name = "idTransaction") Integer idTransaction) {
-        
+
         Transaction transaction = transactionService.findOne(idTransaction);
-        
+
         model.addAttribute("customers", customerRepository.findAll());
         model.addAttribute("inventories", inventoryRepository.findAll());
         model.addAttribute("statuses", statusRepository.findAll());
