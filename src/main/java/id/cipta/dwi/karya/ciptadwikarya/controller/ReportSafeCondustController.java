@@ -80,7 +80,7 @@ public class ReportSafeCondustController {
         formSafeConduct.setTransDate(parseToDate(transaction.getTransactionDate()));
         formSafeConduct.setNoSuratJalan("SJ/0"+transaction.getIdTransaction()+"/"+dtf.format(now));
         formSafeConduct.setTransDate(parseToDate(transaction.getTglSuratJalan()));
-        
+        formSafeConduct.setStatus(transaction.getIdStatus().getName());
         
         System.out.println("Year : " + dtf.format(now));
         System.out.println(formSafeConduct.toString());
