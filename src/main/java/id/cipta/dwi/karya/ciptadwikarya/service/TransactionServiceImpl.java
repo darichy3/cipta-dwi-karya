@@ -129,6 +129,8 @@ public class TransactionServiceImpl implements TransactionService{
             Transaction transactionDb = repository.findByIdTransaction(transactions.getIdTransaction());
             transactionDb.setIdUser(userRepository.findByName(loginUser));
             transactionDb.setIdStatus(transactions.getIdStatus());
+            transactionDb.setQuantity(-transactions.getQuantity());
+            transactionDb.setTotalHarga(-transactions.getTotalHarga());
             
             repository.save(transactionDb); 
             logger.info("TrnsactionDB: "+transactionDb.toString()); 

@@ -262,14 +262,6 @@
 				<textFieldExpression><![CDATA[$V{SUMQTY}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="368" y="0" width="75" height="22" uuid="4f84fca8-8532-4c8f-aa86-f7b75404f715"/>
-				<box>
-					<topPen lineWidth="0.75"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$V{SUMHRG}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="450" y="0" width="96" height="22" uuid="7c379a52-86a8-4d5a-8403-38350eef1ab8"/>
 				<box>
 					<topPen lineWidth="0.75"/>
