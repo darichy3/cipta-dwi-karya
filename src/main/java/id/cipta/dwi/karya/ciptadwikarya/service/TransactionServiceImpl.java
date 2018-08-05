@@ -1,17 +1,25 @@
 package id.cipta.dwi.karya.ciptadwikarya.service;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Jurnal;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Status;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormTransaction;
+import id.cipta.dwi.karya.ciptadwikarya.repository.AkunRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.CustomersRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.InventoryRepository;
+import id.cipta.dwi.karya.ciptadwikarya.repository.JurnalRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.StatusRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.TransactionRepository;
 import id.cipta.dwi.karya.ciptadwikarya.repository.UsersRepository;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +47,15 @@ public class TransactionServiceImpl implements TransactionService{
     @Autowired
     private StatusRepository statusRepository;
     
+    @Autowired
+    private JurnalRepository jurnalRepository;
+    
+    @Autowired
+    private AkunRepository akunRepository;
+    
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter dtfYear = DateTimeFormatter.ofPattern("yyyy");
+    DateTimeFormatter dtfGabung = DateTimeFormatter.ofPattern("yyyyMMdd");
     LocalDateTime now = LocalDateTime.now();
         
    
@@ -57,6 +72,28 @@ public class TransactionServiceImpl implements TransactionService{
                 transaction = repository.save(transaction);
             }
             logger.info(transaction.toString());
+            
+            if(transaction != null){
+                Jurnal jurnal1 = new Jurnal();
+                
+                jurnal1.setIdTransaction(transaction);
+                jurnal1.setTglJurnal(dtf.format(now));
+                jurnal1.setKodeAkun(akunRepository.getOne(1));
+                jurnal1.setDebit(transaction.getTotalHarga());
+                jurnal1.setKredit(0);
+                jurnalRepository.save(jurnal1);
+                logger.info("Jurnal 1: "+jurnal1.toString());
+                
+                Jurnal jurnal2 = new Jurnal();
+               
+                jurnal2.setIdTransaction(transaction);
+                jurnal2.setTglJurnal(dtf.format(now));
+                jurnal2.setKodeAkun(akunRepository.getOne(2));
+                jurnal2.setDebit(0);
+                jurnal2.setKredit(transaction.getTotalHarga());
+                jurnalRepository.save(jurnal2);
+                logger.info("Jurnal 2: "+jurnal2.toString());
+            }
             
             if(transaction != null){
             Inventory inventory = inventoryRepository.findOne(transaction.getIdInventory().getIdInventory());
@@ -134,6 +171,28 @@ public class TransactionServiceImpl implements TransactionService{
             
             repository.save(transactionDb); 
             logger.info("TrnsactionDB: "+transactionDb.toString()); 
+            
+            if(transactionDb != null){
+                Jurnal jurnal1 = new Jurnal();
+                
+                jurnal1.setIdTransaction(transactionDb);
+                jurnal1.setTglJurnal(dtf.format(now));
+                jurnal1.setKodeAkun(akunRepository.getOne(3));
+                jurnal1.setDebit(-transactionDb.getTotalHarga());
+                jurnal1.setKredit(0);
+                jurnalRepository.save(jurnal1);
+                logger.info("Jurnal 1: "+jurnal1.toString());
+                
+                Jurnal jurnal2 = new Jurnal();
+               
+                jurnal2.setIdTransaction(transactionDb);
+                jurnal2.setTglJurnal(dtf.format(now));
+                jurnal2.setKodeAkun(akunRepository.getOne(1));
+                jurnal2.setDebit(0);
+                jurnal2.setKredit(-transactionDb.getTotalHarga());
+                jurnalRepository.save(jurnal2);
+                logger.info("Jurnal 2: "+jurnal2.toString());
+            }
      
             if(transactionDb != null){
             Inventory inventory = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory());

@@ -2,12 +2,18 @@ package id.cipta.dwi.karya.ciptadwikarya.controller;
 
 import id.cipta.dwi.karya.ciptadwikarya.domain.Customers;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Inventory;
+import id.cipta.dwi.karya.ciptadwikarya.domain.Jurnal;
 import id.cipta.dwi.karya.ciptadwikarya.domain.Transaction;
+import id.cipta.dwi.karya.ciptadwikarya.form.FormJurnal;
 import id.cipta.dwi.karya.ciptadwikarya.form.FormSafeConduct;
 import id.cipta.dwi.karya.ciptadwikarya.service.CustomersReportService;
 import id.cipta.dwi.karya.ciptadwikarya.service.InventoryReportService;
+import id.cipta.dwi.karya.ciptadwikarya.service.JurnalService;
 import id.cipta.dwi.karya.ciptadwikarya.service.TransactionService;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,6 +44,12 @@ public class ReportController {
 
     @Autowired
     private TransactionService transactionService;
+    
+    @Autowired
+    private JurnalService jurnalService;
+    
+    DateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
+    DateFormat dtfYear = new SimpleDateFormat("yyyy");
 
     @RequestMapping(value = "/menu")
     public String ReportAction() {
@@ -67,6 +79,9 @@ public class ReportController {
         } else if (jnsLap.trim().equalsIgnoreCase("Report Transaction")) { //disamakan dengan combobox html
             jPdf.setUrl("classpath:report/reportTransactions.jrxml");
             params.put("datasource", dataListTransaction(tglAwal, tglAkhir));
+        }else if (jnsLap.trim().equalsIgnoreCase("Report Jurnal")) {
+            jPdf.setUrl("classpath:report/reportJurnal.jrxml");
+            params.put("datasource", dataListJurnal(tglAwal, tglAkhir));
         } else {
             jPdf.setUrl("classpath:report/reportCustomer.jrxml");
             params.put("datasource", dummyData());
@@ -109,6 +124,32 @@ public class ReportController {
             formSafeConduct.setTotalPrice(totalPrice);
             formSafeConduct.setTotalSales(totalSales);
             listForms.add(formSafeConduct);
+        }
+
+        return listForms;
+    }
+    
+    private List<FormJurnal> dataListJurnal(String tglAwal, String tglAkhir) {
+
+        List<Jurnal> listTrans = jurnalService.findByTglJurnalBetween(tglAwal, tglAkhir);
+
+        List<FormJurnal> listForms = new ArrayList();
+        
+        Integer totalSales = 0;
+
+        for (Jurnal jurnal : listTrans) {
+            FormJurnal formJurnal = new FormJurnal();
+            
+            Date tglJurnal= parseToDate(jurnal.getTglJurnal());
+            
+            String noTransaksi = "J-00"+jurnal.getIdJurnal()+"/"+dtfYear.format(tglJurnal);
+            formJurnal.setNoTransaksi(noTransaksi);
+            formJurnal.setTglJurnal(jurnal.getTglJurnal());
+            formJurnal.setKodeAkun("00"+jurnal.getKodeAkun().getIdAkun());
+            formJurnal.setNamaAkun(jurnal.getKodeAkun().getNamaAkun());
+            formJurnal.setDebit(jurnal.getDebit());
+            formJurnal.setKredit(jurnal.getKredit());
+            listForms.add(formJurnal);
         }
 
         return listForms;
