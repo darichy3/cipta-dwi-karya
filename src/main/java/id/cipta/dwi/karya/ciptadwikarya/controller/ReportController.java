@@ -142,7 +142,7 @@ public class ReportController {
             
             Date tglJurnal= parseToDate(jurnal.getTglJurnal());
             
-            String noTransaksi = "J-00"+jurnal.getIdJurnal()+"/"+dtfYear.format(tglJurnal);
+            String noTransaksi = "J-00"+jurnal.getIdTransaction().getIdTransaction()+"/"+dtfYear.format(tglJurnal);
             formJurnal.setNoTransaksi(noTransaksi);
             formJurnal.setTglJurnal(jurnal.getTglJurnal());
             formJurnal.setKodeAkun("00"+jurnal.getKodeAkun().getIdAkun());

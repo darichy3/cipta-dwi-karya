@@ -18,6 +18,7 @@
                             <th width="20%">Name</th>
                             <th width="20%">Address</th>
                             <th width="20%">Phone</th>
+                            <th width="20%">Pembayaran</th>
                             <th width="20%">Create Date</th>
                             <th width="10%">Create By</th>
                             <th width="5%">Action</th>
@@ -29,8 +30,9 @@
                             <td th:text="${customer.name}">Cell 2</td>
                             <td th:text="${customer.address}">Cell 3</td>
                             <td th:text="${customer.phone}">Cell 4</td>
-                            <td th:text="${customer.createdDate}">Cell 5</td>
-                            <td th:text="${customer.createdBy}">Cell 6</td>
+                            <td th:text="${customer.jnsPmbyrn}">Cell 5</td>
+                            <td th:text="${customer.createdDate}">Cell 6</td>
+                            <td th:text="${customer.createdBy}">Cell 7</td>
                             <td>
                                 <a type="button" class="btn btn-primary" href="/customer/edit" th:href="@{/customer/edit/__${customer.idCustomer}__}">Edit</a>
                                 <a type="button" class="btn btn-danger" href="/customer/delete" th:href="@{/customer/delete/__${customer.idCustomer}__}">Delete</a>

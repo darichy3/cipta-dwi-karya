@@ -199,8 +199,8 @@ public class TransactionServiceImpl implements TransactionService{
             Integer validSumOut = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumOut();
             Integer validSumEnd = inventoryRepository.findOne(transactionDb.getIdInventory().getIdInventory()).getSumEnd();
             
-            inventory.setSumOut(validSumOut-transactionDb.getQuantity());
-            inventory.setSumEnd(validSumEnd+transactionDb.getQuantity());
+            inventory.setSumOut(validSumOut+transactionDb.getQuantity());
+            inventory.setSumEnd(validSumEnd-transactionDb.getQuantity());
                 
             inventory = inventoryRepository.save(inventory);
               logger.info("Inventory update"+inventory.toString());

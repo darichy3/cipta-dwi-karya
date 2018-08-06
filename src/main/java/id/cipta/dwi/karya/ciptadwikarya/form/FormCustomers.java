@@ -4,6 +4,7 @@ public class FormCustomers {
     private String name;
     private String address;
     private String phone;
+    private String jnsPmbyrn;
 
     public String getName() {
         return name;
@@ -29,10 +30,16 @@ public class FormCustomers {
         this.phone = phone;
     }
 
+    public String getJnsPmbyrn() {
+        return jnsPmbyrn;
+    }
+
+    public void setJnsPmbyrn(String jnsPmbyrn) {
+        this.jnsPmbyrn = jnsPmbyrn;
+    }
+
     @Override
     public String toString() {
-        return "FormCustomers{" + "name=" + name + ", address=" + address + ", phone=" + phone + '}';
+        return "FormCustomers{" + "name=" + name + ", address=" + address + ", phone=" + phone + ", jnsPmbyrn=" + jnsPmbyrn + '}';
     }
-    
-    
 }

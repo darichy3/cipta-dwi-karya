@@ -31,6 +31,9 @@ public class Customers {
     
     @Column(name = "created_by")
     private String createdBy;
+    
+    @Column(name = "jenis_pembayaran")
+    private String jnsPmbyrn;
 
     public int getIdCustomer() {
         return idCustomer;
@@ -80,8 +83,16 @@ public class Customers {
         this.createdBy = createdBy;
     }
 
+    public String getJnsPmbyrn() {
+        return jnsPmbyrn;
+    }
+
+    public void setJnsPmbyrn(String jnsPmbyrn) {
+        this.jnsPmbyrn = jnsPmbyrn;
+    }
+
     @Override
     public String toString() {
-        return "Customers{" + "idCustomer=" + idCustomer + ", name=" + name + ", address=" + address + ", phone=" + phone + ", createdDate=" + createdDate + ", createdBy=" + createdBy + '}';
-    }    
+        return "Customers{" + "idCustomer=" + idCustomer + ", name=" + name + ", address=" + address + ", phone=" + phone + ", createdDate=" + createdDate + ", createdBy=" + createdBy + ", jnsPmbyrn=" + jnsPmbyrn + '}';
+    }
 }

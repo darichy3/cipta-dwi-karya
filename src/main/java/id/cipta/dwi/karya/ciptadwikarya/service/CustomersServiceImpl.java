@@ -47,6 +47,7 @@ public class CustomersServiceImpl implements CustomersService{
             customersDb.setAddress(customers.getAddress());
             customersDb.setPhone(customers.getPhone());
             customersDb.setCreatedBy(loginUser);
+            customersDb.setJnsPmbyrn(customers.getJnsPmbyrn());
             repository.save(customersDb);
             logger.info("Data customers: "+customersDb.toString());        
         }        

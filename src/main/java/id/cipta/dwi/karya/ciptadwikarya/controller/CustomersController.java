@@ -61,10 +61,12 @@ public class CustomersController {
         customers.setPhone(formCustomers.getPhone());
         customers.setCreatedDate(dtf.format(now));
         customers.setCreatedBy(loginUser);
+        customers.setJnsPmbyrn(formCustomers.getJnsPmbyrn());
         
         customersService.saveCustomer(customers);
         
-        logger.info(formCustomers.toString());
+//        logger.info(formCustomers.toString());
+        logger.info("Hasil= "+customers.toString());
         
         return "redirect:/customer/menu";        
     }
@@ -98,6 +100,7 @@ public class CustomersController {
         customers.setAddress(formCustomers.getAddress());
         customers.setPhone(formCustomers.getPhone());
         customers.setCreatedBy(loginUser);
+        customers.setJnsPmbyrn(formCustomers.getJnsPmbyrn());
         
         customersService.updateCustomers(customers);
         logger.info(formCustomers.toString());
